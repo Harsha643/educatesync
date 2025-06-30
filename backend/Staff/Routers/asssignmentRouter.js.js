@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const assignmentController = require('../controllers/assignmentController');
+const assignmentController = require('../Controllers/assignmentController');
 
 router.get('/', assignmentController.getAssignments);
 router.get('/:classNumber', assignmentController.getAssigmentByClass);
