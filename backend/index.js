@@ -58,7 +58,7 @@ app.use("/student/assignment", require("./Students/Routers/studentsAssignmentsSu
 //admin register
 // app.use("/admin/auth", require("./Admin/Routers/Register.js"));
 app.use("/admin/auth", auth);
-app.use("/admin/post", admins);
+app.use("/admin/register", admins);
 
 
 // MongoDB Connection
