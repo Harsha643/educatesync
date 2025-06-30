@@ -12,7 +12,7 @@ const Assign = () => {
   useEffect(() => {
     const fetchTimetable = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/admin/timetable/${className}/${day}`);
+        const response = await fetch(`https://educatesync.onrender.com/admin/timetable/${className}/${day}`);
         if (!response.ok) throw new Error("Not found");
         const data = await response.json();
         setSchedule(data.schedule || []);
@@ -24,7 +24,7 @@ const Assign = () => {
 
     const fetchStaff = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/admin/staff/${newEntry.subject}`);
+        const res = await fetch(`https://educatesync.onrender.com/admin/staff/${newEntry.subject}`);
         const data = await res.json();
         setStaff(data);
       } catch (err) {
@@ -54,7 +54,7 @@ const Assign = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:4000/admin/timetable", {
+      const response = await fetch("https://educatesync.onrender.com/admin/timetable", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -88,14 +88,14 @@ const Assign = () => {
 
   const handleDelete = async (scheduleItemId) => {
     try {
-      const res = await fetch(`http://localhost:4000/admin/timetable/${className}/${day}`);
+      const res = await fetch(`https://educatesync.onrender.com/admin/timetable/${className}/${day}`);
       if (!res.ok) throw new Error("Failed to fetch timetable");
 
       const data = await res.json();
       const timetableId = data._id;
 
       const deleteRes = await fetch(
-        `http://localhost:4000/admin/timetable/${timetableId}/${scheduleItemId}`,
+        `https://educatesync.onrender.com/admin/timetable/${timetableId}/${scheduleItemId}`,
         {
           method: "DELETE",
         }

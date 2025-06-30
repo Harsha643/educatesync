@@ -9,7 +9,7 @@ const Classes = ({ classData }) => {
   useEffect(() => {
     async function getClasses() {
       try {
-        const response = await fetch("http://localhost:4000/staff/class");
+        const response = await fetch("https://educatesync.onrender.com/staff/class");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

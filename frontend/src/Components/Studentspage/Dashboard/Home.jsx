@@ -11,7 +11,7 @@ const Home = () => {
     useEffect(() => {
         async function fetching() {
             try {
-                const response = await fetch("http://localhost:4000/admin/gallery");
+                const response = await fetch("https://educatesync.onrender.com/admin/gallery");
                 if (!response.ok) throw new Error("Failed to fetch gallery");
                 const data = await response.json();
                 setGallery(data);

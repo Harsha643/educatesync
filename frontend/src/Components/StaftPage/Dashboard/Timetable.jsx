@@ -17,7 +17,7 @@ const Timetable = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:4000/admin/timetable");
+                const response = await fetch("https://educatesync.onrender.com/admin/timetable");
                 const result = await response.json();
                 setData(result);
                 toast.success("Timetable loaded successfully");

@@ -14,7 +14,7 @@ const Events = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch("http://localhost:4000/admin/events");
+      const response = await fetch("https://educatesync.onrender.com/admin/events");
       const data = await response.json();
       setEvents(data);
     } catch (error) {
@@ -34,8 +34,8 @@ const Events = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = editingEvent
-      ? `http://localhost:4000/admin/events/${editingEvent._id}`
-      : "http://localhost:4000/admin/events";
+      ? `https://educatesync.onrender.com/admin/events/${editingEvent._id}`
+      : "https://educatesync.onrender.com/admin/events";
     const method = editingEvent ? "PUT" : "POST";
 
     try {
@@ -68,7 +68,7 @@ const Events = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:4000/admin/events/${id}`, {
+      await fetch(`https://educatesync.onrender.com/admin/events/${id}`, {
         method: "DELETE",
       });
       fetchEvents();

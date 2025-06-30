@@ -31,7 +31,7 @@ const Feedback = () => {
         async function fetchStudentsByClass() {
             if (!selectedClass) return;
             try {
-                const response = await fetch(`http://localhost:4000/admin/students/${selectedClass}`);
+                const response = await fetch(`https://educatesync.onrender.com/admin/students/${selectedClass}`);
                 const data = await response.json();
                 setStudentData(data);
             } catch (error) {
@@ -66,7 +66,7 @@ const Feedback = () => {
     };
     async function fetchFeedback() {
         try {
-            const response = await fetch('http://localhost:4000/staff/feedback');
+            const response = await fetch('https://educatesync.onrender.com/staff/feedback');
             if (!response.ok) throw new Error("Failed to fetch feedback");
             const data = await response.json();
             console.log("Feedback data:", data);
@@ -85,7 +85,7 @@ const Feedback = () => {
         console.log(feedback)
     const handleSubmitFeedback = async () => {
         try {
-            const response = await fetch('http://localhost:4000/staff/feedback', {
+            const response = await fetch('https://educatesync.onrender.com/staff/feedback', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)

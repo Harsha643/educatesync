@@ -8,7 +8,7 @@ const StudentDataFetching = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:4000/admin/students');
+      const response = await fetch('https://educatesync.onrender.com/admin/students');
       const data = await response.json();
       setStudentData(data);
     } catch (error) {
@@ -22,7 +22,7 @@ const StudentDataFetching = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:4000/admin/students/${id}`, { method: 'DELETE' });
+      await fetch(`https://educatesync.onrender.com/admin/students/${id}`, { method: 'DELETE' });
       fetchData();
     } catch (error) {
       console.error('Delete error:', error);
@@ -115,8 +115,8 @@ const StudentDataFetching = () => {
 
       try {
         const url = existingStudent
-          ? `http://localhost:4000/admin/students/${student._id}`
-          : 'http://localhost:4000/admin/students';
+          ? `https://educatesync.onrender.com/admin/students/${student._id}`
+          : 'https://educatesync.onrender.com/admin/students';
 
         const method = existingStudent ? 'PUT' : 'POST';
 

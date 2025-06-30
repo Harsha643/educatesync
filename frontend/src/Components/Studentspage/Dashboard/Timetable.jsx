@@ -10,7 +10,7 @@ const Timetable = ({ classData }) => {
   useEffect(() => {
     async function fetchTimetable() {
       try {
-        const response = await fetch("http://localhost:4000/admin/timetable");
+        const response = await fetch("https://educatesync.onrender.com/admin/timetable");
         if (!response.ok) {
           throw new Error("Failed to fetch timetable");
         }

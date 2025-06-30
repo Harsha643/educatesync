@@ -63,7 +63,7 @@ const Newstudent = ({ existingStudent, onClose, refreshData }) => {
     e.preventDefault();
 
     try {
-      const allStudentsRes = await fetch("http://localhost:4000/admin/students");
+      const allStudentsRes = await fetch("https://educatesync.onrender.com/admin/students");
       const allStudents = await allStudentsRes.json();
 
       const isDuplicate = allStudents.some(

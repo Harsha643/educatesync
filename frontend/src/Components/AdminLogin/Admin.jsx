@@ -21,11 +21,11 @@ const RoleBasedLogin = () => {
   useEffect(() => {
     // Fetch staff and student data only if role is staff or student
     if (role === 'staff') {
-      fetch('http://localhost:4000/admin/staff')
+      fetch('https://educatesync.onrender.com/admin/staff')
         .then((res) => res.json())
         .then(setStaffList);
     } else if (role === 'student') {
-      fetch('http://localhost:4000/admin/students')
+      fetch('https://educatesync.onrender.com/admin/students')
         .then((res) => res.json())
         .then(setStudentList);
     }
@@ -40,7 +40,7 @@ const RoleBasedLogin = () => {
 
     if (role === 'admin') {
       try {
-        const res = await fetch('http://localhost:4000/admin/auth/login', {
+        const res = await fetch('https://educatesync.onrender.com/admin/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: formData.email, password: formData.password }),

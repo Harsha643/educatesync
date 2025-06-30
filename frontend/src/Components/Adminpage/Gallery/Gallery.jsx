@@ -18,7 +18,7 @@ const Gallery = () => {
   const fetchImages = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:4000/admin/gallery');
+      const response = await fetch('https://educatesync.onrender.com/admin/gallery');
       if (!response.ok) throw new Error('Failed to fetch images');
       const data = await response.json();
       setImages(data);

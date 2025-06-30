@@ -17,7 +17,7 @@ const Home = () => {
 
     const fetchGallery = async () => {
         try {
-            const response = await fetch("http://localhost:4000/admin/gallery");
+            const response = await fetch("https://educatesync.onrender.com/admin/gallery");
             const data = await response.json();
             setGallery(data);
         } catch (error) {

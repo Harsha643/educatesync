@@ -10,7 +10,7 @@ const FeeManagement = () => {
     }, []);
 
     const fetchStudents = () => {
-        fetch("http://localhost:4000/admin/students")
+        fetch("https://educatesync.onrender.com/admin/students")
             .then((res) => res.json())
             .then(setStudents)
             .catch((err) => console.error("Error fetching students:", err));
@@ -36,7 +36,7 @@ const FeeManagement = () => {
             (editedFees.lab ?? 0);
         const updatedFees = { ...editedFees, total };
 
-        fetch(`http://localhost:4000/admin/students/${id}/fees`, {
+        fetch(`https://educatesync.onrender.com/admin/students/${id}/fees`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedFees),

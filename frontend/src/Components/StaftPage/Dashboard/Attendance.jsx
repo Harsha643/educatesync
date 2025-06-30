@@ -13,7 +13,7 @@ const Attendance = () => {
   // Fetch class assigned to teacher
   const getClassTeacher = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/admin/classTeacher/${teacherName}`);
+      const response = await fetch(`https://educatesync.onrender.com/admin/classTeacher/${teacherName}`);
       const data = await response.json();
       setClassTeacher(data);
     } catch (error) {
@@ -25,7 +25,7 @@ const Attendance = () => {
   const getStudents = async (classNumber) => {
     console.log("this is class number", classNumber);
     try {
-      const response = await fetch(`http://localhost:4000/admin/students/${classNumber}`);
+      const response = await fetch(`https://educatesync.onrender.com/admin/students/${classNumber}`);
       const data = await response.json();
       setStudentData(data);
     } catch (error) {
@@ -39,7 +39,7 @@ console.log("attendance",attendanceRecords)
 const getAttendance = async (classNumber) => {
   console.log(classNumber)
   try {
-    const response = await fetch(`http://localhost:4000/admin/attendance/classAttendance/${classNumber}`);
+    const response = await fetch(`https://educatesync.onrender.com/admin/attendance/classAttendance/${classNumber}`);
     const data = await response.json();
     setAttendanceRecords(Array.isArray(data) ? data : []);
   } catch (error) {
@@ -79,7 +79,7 @@ const getAttendance = async (classNumber) => {
       classNumber: classteacher[0].classNumber
     };
 
-    const response = await fetch(`http://localhost:4000/admin/attendance`, {
+    const response = await fetch(`https://educatesync.onrender.com/admin/attendance`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
@@ -92,7 +92,7 @@ const getAttendance = async (classNumber) => {
 
   // Update Attendance
   const handleUpdateAttendance = async (id, newStatus) => {
-    const response = await fetch(`http://localhost:4000/admin/attendance/${id}`, {
+    const response = await fetch(`https://educatesync.onrender.com/admin/attendance/${id}`, {
       method: "PUT",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: newStatus })
@@ -105,7 +105,7 @@ const getAttendance = async (classNumber) => {
 
   // Delete Attendance
   const handleDeleteAttendance = async (id) => {
-    const response = await fetch(`http://localhost:4000/admin/attendance/${id}`, {
+    const response = await fetch(`https://educatesync.onrender.com/admin/attendance/${id}`, {
       method: "DELETE"
     });
 

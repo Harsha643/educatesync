@@ -9,7 +9,7 @@ const Feedback = ({ rollNumber }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:4000/staff/feedback");
+        const res = await fetch("https://educatesync.onrender.com/staff/feedback");
         if (!res.ok) throw new Error("Network error");
         const data = await res.json();
         setFeedback(data);

@@ -11,7 +11,7 @@ const StaffDataFetching = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:4000/admin/staff');
+      const response = await fetch('https://educatesync.onrender.com/admin/staff');
       const data = await response.json();
       setStaffData(data);
     } catch (error) {
@@ -26,7 +26,7 @@ const StaffDataFetching = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:4000/admin/staff/${id._id}`, { method: 'DELETE' });
+      await fetch(`https://educatesync.onrender.com/admin/staff/${id._id}`, { method: 'DELETE' });
       toast.success("Staff deleted successfully");
       fetchData();
     } catch (error) {

@@ -65,7 +65,7 @@ const NewStdt = ({ existingStudent, onClose, refreshData }) => {
 
   try {
     // Step 1: Get all existing students
-    const allStudentsRes = await fetch("http://localhost:4000/admin/students");
+    const allStudentsRes = await fetch("https://educatesync.onrender.com/admin/students");
     const allStudents = await allStudentsRes.json();
 
     // Step 2: Check for duplicate Aadhar (ignore check if updating existing)

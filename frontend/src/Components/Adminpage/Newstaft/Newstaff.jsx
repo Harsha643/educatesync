@@ -76,7 +76,7 @@ const Newstaff = ({ existingStaff, onClose, refreshData }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/admin/staff");
+      const res = await fetch("https://educatesync.onrender.com/admin/staff");
       const allStaff = await res.json();
 
       const isDuplicate = allStaff.some(
@@ -98,8 +98,8 @@ const Newstaff = ({ existingStaff, onClose, refreshData }) => {
       }
 
       const url = existingStaff
-        ? `http://localhost:4000/admin/staff/${existingStaff.staffId}`
-        : 'http://localhost:4000/admin/staff';
+        ? `https://educatesync.onrender.com/admin/staff/${existingStaff.staffId}`
+        : 'https://educatesync.onrender.com/admin/staff';
 
       const method = existingStaff ? 'PUT' : 'POST';
 

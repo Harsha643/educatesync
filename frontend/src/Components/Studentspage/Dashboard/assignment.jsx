@@ -18,7 +18,7 @@ const Assignment = ({ classData }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:4000/staff/assignments`);
+                const response = await fetch(`https://educatesync.onrender.com/staff/assignments`);
                 const result = await response.json();
                 setData(result);
             } catch (error) {
@@ -58,7 +58,7 @@ const handleSubmitAssignment = async () => {
     }
 
     try {
-        const response = await fetch('http://localhost:4000/student/assignment', {
+        const response = await fetch('https://educatesync.onrender.com/student/assignment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

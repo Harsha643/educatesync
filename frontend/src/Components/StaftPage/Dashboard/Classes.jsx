@@ -26,7 +26,7 @@ const Classes = () => {
 
     const fetchClasses = async () => {
         try {
-            const response = await fetch('http://localhost:4000/staff/class');
+            const response = await fetch('https://educatesync.onrender.com/staff/class');
             const data = await response.json();
             setClasses(data);
         } catch (error) {
@@ -61,7 +61,7 @@ const Classes = () => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await fetch(`http://localhost:4000/staff/class/${id}`, {
+            const res = await fetch(`https://educatesync.onrender.com/staff/class/${id}`, {
                 method: 'DELETE',
             });
             if (res.ok) {
@@ -78,8 +78,8 @@ const Classes = () => {
 
     const handleSave = async () => {
         const url = selectedClass
-            ? `http://localhost:4000/staff/class/${selectedClass._id}`
-            : 'http://localhost:4000/staff/class';
+            ? `https://educatesync.onrender.com/staff/class/${selectedClass._id}`
+            : 'https://educatesync.onrender.com/staff/class';
 
         const method = selectedClass ? 'PUT' : 'POST';
 

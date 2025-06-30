@@ -33,7 +33,7 @@ const Assignment = () => {
 
     const fetchAssignment = async () => {
         try {
-            const response = await fetch('http://localhost:4000/staff/assignments');
+            const response = await fetch('https://educatesync.onrender.com/staff/assignments');
             const data = await response.json();
             setAssignments(Array.isArray(data) ? data : []);
         } catch (error) {
@@ -63,14 +63,14 @@ const Assignment = () => {
         try {
             if (editIndex !== null) {
                 const id = assignments[editIndex]._id;
-                await fetch(`http://localhost:4000/staff/assignments/${id}`, {
+                await fetch(`https://educatesync.onrender.com/staff/assignments/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(form),
                 });
                 toast.success('Assignment updated successfully!');
             } else {
-                await fetch('http://localhost:4000/staff/assignments', {
+                await fetch('https://educatesync.onrender.com/staff/assignments', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(form),

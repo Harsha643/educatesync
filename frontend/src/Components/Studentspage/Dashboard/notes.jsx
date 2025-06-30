@@ -9,7 +9,7 @@ const Notes = ({ classData }) => {
     useEffect(() => {
         async function fetchNotes() {
             try {
-                const response = await fetch('http://localhost:4000/staff/notes');
+                const response = await fetch('https://educatesync.onrender.com/staff/notes');
                 if (!response.ok) throw new Error("Failed to fetch notes");
                 const data = await response.json();
                 setNotes(data);
