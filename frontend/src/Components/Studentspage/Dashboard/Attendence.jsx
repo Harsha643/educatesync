@@ -8,7 +8,7 @@ const Attendance = ({ rollNumber }) => {
 
     const getAttendance = async () => {
         try {
-            const response = await fetch('http://localhost:4000/admin/attendance');
+            const response = await fetch('https://educatesync.onrender.com/admin/attendance');
             if (!response.ok) {
                 throw new Error(`Server error: ${response.status}`);
             }
