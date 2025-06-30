@@ -19,7 +19,7 @@ exports.getAllTimetables = async (req, res) => {
 
 exports.addTimetable = async (req, res) => {
   try {
-    console.log("Request Body:", req.body);
+    // console.log("Request Body:", req.body);
 
     if (typeof req.body.schedule === "string") {
       req.body.schedule = JSON.parse(req.body.schedule);
@@ -40,7 +40,7 @@ exports.addTimetable = async (req, res) => {
       // Create new timetable entry
       const newTimetable = new Timetable({ className, day, schedule });
       await newTimetable.save();
-      console.log("Timetable saved:", newTimetable);
+      // console.log("Timetable saved:", newTimetable);
       res.status(201).json({ message: "Timetable added successfully", timetable: newTimetable });
     }
   } catch (error) {
