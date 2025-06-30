@@ -1,0 +1,49 @@
+.smart-courses {
+    background-color: #f7f9fc;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 40px;
+  }
+  
+  .course-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+  
+  .course-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-6px);
+  }
+  
+  .course-icon {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .course-card h3 {
+    font-size: 1.3rem;
+    color: #4f46e5;
+    margin-bottom: 10px;
+  }
+  
+  .course-card p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  

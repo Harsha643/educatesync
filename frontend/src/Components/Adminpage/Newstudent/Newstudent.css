@@ -1,0 +1,209 @@
+/* ================================
+   General Styles & Layout
+   ================================ */
+.form-container {
+  background-color: #eaf3fe;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 800px;
+
+  margin: 2rem auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+  color: #2d2d2d;
+}
+
+.form-title {
+  text-align: center;
+  color: #2196f3;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Two-column grid on medium+ screens */
+@media (min-width: 768px) {
+  .form-container form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  /* utility class to make a field span both columns */
+  .input-group.full-width {
+    grid-column: 1 / -1;
+  }
+  .submit-button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 300px;
+  }
+}
+
+/* ================================
+   Input-Group & Hover Effects
+   ================================ */
+.input-group {
+  position: relative;
+  margin-bottom: 1.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ================================
+   Base Form Controls
+   ================================ */
+.input-group input,
+.input-group textarea,
+.input-group select {
+  width: 100%;
+  padding: 1rem 0.75rem 0.25rem;
+  font-size: 1rem;
+  color: #2d2d2d;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border 0.2s ease, background 0.2s ease;
+}
+
+/* Hover background */
+.input-group input:hover,
+.input-group textarea:hover,
+.input-group select:hover {
+  background: #f5faff;
+}
+
+/* Focus outline */
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+/* ================================
+   Placeholder Visibility
+   ================================ */
+/* hide by default */
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+/* fade in on focus */
+.input-group input:focus::placeholder,
+.input-group textarea:focus::placeholder {
+  opacity: 1;
+}
+
+/* Vendor-prefixed placeholders */
+.input-group input::-webkit-input-placeholder { opacity: 0; }
+.input-group input::-moz-placeholder          { opacity: 0; }
+.input-group input:-ms-input-placeholder      { opacity: 0; }
+.input-group input::-ms-input-placeholder     { opacity: 0; }
+
+.input-group input:focus::-webkit-input-placeholder { opacity: 1; }
+.input-group input:focus::-moz-placeholder          { opacity: 1; }
+.input-group input:focus:-ms-input-placeholder      { opacity: 1; }
+.input-group input:focus::-ms-input-placeholder     { opacity: 1; }
+
+/* ================================
+   Floating Labels
+   ================================ */
+.input-group label {
+  position: absolute;
+  top: 1rem;
+  left: 0.75rem;
+  background: #eaf3fe;
+  padding: 0 0.25rem;
+  color: #666;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+/* Float when focused or has content/valid value */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label,
+.input-group select:focus + label,
+.input-group select:valid + label {
+  top: -0.5rem;
+  left: 0.6rem;
+  font-size: 0.75rem;
+  color: #2196f3;
+}
+
+/* ================================
+   Custom Select Arrow
+   ================================ */
+.input-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #666 50%),
+    linear-gradient(135deg, #666 50%, transparent 50%);
+  background-position:
+    calc(100% - 1rem) calc(50% - 0.15em),
+    calc(100% - 0.7rem) calc(50% - 0.15em);
+  background-size: 0.4em 0.4em;
+  background-repeat: no-repeat;
+}
+/* CSS */
+.gender-select {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  transition: border-color 0.3s ease;
+}
+
+.gender-select:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* Hide placeholder text until focus or a valid choice */
+.input-group select {
+  /* start transparent so the empty option is hidden */
+  color: transparent;
+}
+
+/* Once focused — or once the user has made a valid selection — show the text */
+.input-group select:focus,
+.input-group select:valid {
+  color: #2d2d2d;
+}
+
+
+
+
+/* ================================
+   Submit Button
+   ================================ */
+.submit-button {
+  background: #5fc77d;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background: #4ab869;
+  transform: translateY(-1px);
+}

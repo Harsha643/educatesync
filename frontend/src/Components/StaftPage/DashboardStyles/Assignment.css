@@ -1,0 +1,118 @@
+/* Wrapper for scroll */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto; /* optional: for vertical scroll */
+  max-height: 80vh; /* optional: limit height */
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table structure */
+.assignment-table {
+  width: 100%;
+  min-width: 700px; /* triggers horizontal scroll on small screens */
+  border-collapse: collapse;
+}
+
+.assignment-table th,
+.assignment-table td {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap; /* keep cell content in one line */
+}
+
+.assignment-table th {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  font-weight: 600;
+}
+
+.assignment-table tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.no-data {
+  padding: 20px;
+  color: #888;
+  font-style: italic;
+}
+
+/* Buttons */
+.add-assignment-button {
+  background-color: #2196f3;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.add-assignment-button:hover {
+  background-color: #1976d2;
+}
+
+/* Modal remains unchanged except optional width control */
+
+/* ========== RESPONSIVE TABLET ========== */
+@media screen and (max-width: 768px) {
+  .assignment-table {
+    font-size: 0.9rem;
+    min-width: 600px;
+  }
+
+  .assignment-table th,
+  .assignment-table td {
+    padding: 10px 12px;
+  }
+
+  .add-assignment-button {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 0.95rem;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+/* ========== RESPONSIVE MOBILE ========== */
+@media screen and (max-width: 480px) {
+  .assignment-table {
+    font-size: 0.8rem;
+    min-width: 500px;
+  }
+
+  .assignment-table th,
+  .assignment-table td {
+    padding: 8px 10px;
+  }
+
+  .add-assignment-button {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .modal-content input {
+    font-size: 0.9rem;
+  }
+
+  .modal-content button {
+    font-size: 0.9rem;
+  }
+}

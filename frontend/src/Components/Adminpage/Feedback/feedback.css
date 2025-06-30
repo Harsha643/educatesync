@@ -1,0 +1,201 @@
+.feedback-container {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f9faff;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.feedback-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.feedback-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f1f8ff;
+    border: 1px solid #cce5ff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
+}
+
+.feedback-header label {
+    font-weight: 600;
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+.feedback-header select {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-width: 120px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.feedback-header select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.feedback-header button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.feedback-header button:hover {
+    background-color: #218838;
+}
+
+
+/* Header */
+.feedback-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.feedback-header label {
+    font-weight: 600;
+}
+
+.feedback-header select,
+.feedback-header button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.feedback-header select:focus {
+    outline: none;
+    border-color: #3aa9f7;
+}
+
+.feedback-header button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.feedback-header button:hover {
+    background-color: #218838;
+}
+
+/* Table
+.assignment-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.assignment-table th,
+.assignment-table td {
+    padding: 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.assignment-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.assignment-table td {
+    font-size: 0.95rem;
+} */
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Labels */
+.modal-content label {
+    display: block;
+    font-weight: 600;
+    margin: 0.75rem 0 0.25rem;
+    color: #333;
+}
+
+/* Input & Textarea */
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    box-sizing: border-box;
+}
+
+.modal-content textarea {
+    resize: vertical;
+}
+
+/* Buttons */
+.modal-content button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:first-of-type {
+    background-color: #007bff;
+    color: white;
+    margin-right: 10px;
+}
+
+.modal-content button:first-of-type:hover {
+    background-color: #0056b3;
+}
+
+.modal-content button:last-of-type {
+    background-color: #dc3545;
+    color: white;
+}
+
+.modal-content button:last-of-type:hover {
+    background-color: #c82333;
+}

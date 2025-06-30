@@ -1,0 +1,19 @@
+/* Make sure the whole app fills the screen */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container holding the full Admin layout */
+.Admin-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Optional: if Nav is fixed height, this makes Admin fill rest */
+.Admin-container > div {
+  flex: 1;
+  /* display: flex; */
+}

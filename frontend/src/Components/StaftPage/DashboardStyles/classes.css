@@ -1,0 +1,222 @@
+/* ======= Buttons ======= */
+.add-class-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    margin: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-class-btn:hover {
+    background-color: #218838;
+}
+
+/* Add this to Classes.css */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+ 
+  margin: 0 auto;
+}
+
+
+
+/* ======= Table Styles ======= */
+.classes-table {
+    margin: auto;
+    
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: fixed;
+     width: 100%;
+    min-width: 600px; /* Prevent columns from collapsing on small screens */
+  border-collapse: collapse;
+}
+
+.classes-table th,
+.classes-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-size: 0.95rem;
+    word-wrap: break-word;
+}
+
+.classes-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.classes-table button {
+    padding: 6px 12px;
+    margin: 2px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.classes-table button:hover {
+    opacity: 0.9;
+}
+
+.classes-table button:nth-child(1) {
+    background-color: #ffc107;
+    color: black;
+}
+
+.classes-table button:nth-child(2) {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* ======= Modal Overlay ======= */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* ======= Modal Content ======= */
+.modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 95%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* ======= Modal Actions ======= */
+.modal-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.modal-actions button:first-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal-actions button:last-child {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* ======= Tablet (≤768px) ======= */
+@media screen and (max-width: 768px) {
+    .add-class-btn {
+        width: 90%;
+        margin: 10px auto;
+        display: block;
+        font-size: 0.95rem;
+    }
+
+    .classes-table th,
+    .classes-table td {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .modal-actions button {
+        width: 100%;
+        font-size: 0.95rem;
+    }
+}
+
+/* ======= Mobile (≤480px) ======= */
+@media screen and (max-width: 480px) {
+    .add-class-btn {
+        width: 90%;
+        margin: 10px auto;
+        font-size: 0.9rem;
+    }
+
+    .classes-table {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .classes-table th,
+    .classes-table td {
+        font-size: 0.75rem;
+        padding: 8px;
+    }
+
+    .classes-table button {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+
+    .modal-content label {
+        font-size: 0.85rem;
+    }
+
+    .modal-content input {
+        font-size: 0.9rem;
+    }
+
+    .modal-actions button {
+        font-size: 0.9rem;
+    }
+}

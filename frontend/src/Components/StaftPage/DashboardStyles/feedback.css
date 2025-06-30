@@ -1,0 +1,199 @@
+.feedback-container {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f9faff;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.feedback-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.feedback-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f1f8ff;
+    border: 1px solid #cce5ff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
+}
+
+.feedback-header label {
+    font-weight: 600;
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+.feedback-header select {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-width: 120px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.feedback-header select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.feedback-header button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.feedback-header button:hover {
+    background-color: #218838;
+}
+
+
+/* Header */
+.feedback-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.feedback-header label {
+    font-weight: 600;
+}
+
+.feedback-header select,
+.feedback-header button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.feedback-header select:focus {
+    outline: none;
+    border-color: #3aa9f7;
+}
+
+.feedback-header button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.feedback-header button:hover {
+    background-color: #218838;
+}
+/* Scrollable wrapper for table */
+.feedback-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto; /* Optional vertical scroll */
+  max-height: 75vh; /* Optional max height */
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
+}
+
+/* Feedback table styling */
+.feedback-table {
+  width: 100%;
+  min-width: 700px; /* Ensures scroll on small screens */
+  border-collapse: collapse;
+}
+
+.feedback-table th,
+.feedback-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid #ddd;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.feedback-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.feedback-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 768px) {
+  .feedback-table {
+    font-size: 0.95rem;
+    min-width: 600px;
+  }
+
+  .feedback-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .feedback-header select,
+  .feedback-header button {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .feedback-table {
+    font-size: 0.85rem;
+    min-width: 500px;
+  }
+
+  .feedback-table th,
+  .feedback-table td {
+    padding: 10px;
+  }
+
+  .feedback-header label {
+    font-size: 0.9rem;
+  }
+
+  .feedback-header select,
+  .feedback-header button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .modal-content input,
+  .modal-content textarea {
+    font-size: 0.9rem;
+  }
+
+  .modal-content button {
+    font-size: 0.9rem;
+  }
+}

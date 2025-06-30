@@ -1,0 +1,121 @@
+.timetable-wrapper {
+    padding: 20px;
+    background-color: #f0f4ff;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.timetable-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1a237e; /* deep blue */
+}
+
+.timetable-scroll {
+    overflow-x: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(26, 35, 126, 0.1);
+}
+
+.timetable-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+.timetable-table th,
+.timetable-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e3eafc;
+    text-align: left;
+}
+
+.timetable-table th {
+    background-color: #1e88e5; /* strong blue */
+    color: white;
+    font-weight: 600;
+}
+
+.class-name {
+    font-weight: bold;
+    color: #1a237e;
+    white-space: nowrap;
+}
+
+.schedule-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.schedule-item {
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 160px;
+    max-width: 200px;
+    flex: 1 1 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 128, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.schedule-item:hover {
+    transform: translateY(-2px);
+}
+
+.schedule-item .subject {
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+.schedule-item .time {
+    font-size: 13px;
+    color: #1565c0;
+}
+
+.schedule-item .teacher {
+    font-size: 12px;
+    color: #1a237e;
+}
+
+.highlight {
+    background-color: #c8e6c9; /* light green */
+    border-color: #81c784;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .feedback-container h1{
+        font-size: 0.6rem;
+    }
+    .timetable-title {
+        font-size: 22px;
+    }
+
+    .schedule-item {
+        min-width: 130px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timetable-table th,
+    .timetable-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .schedule-item {
+        min-width: 110px;
+        padding: 6px;
+    }
+
+    .schedule-item .time,
+    .schedule-item .teacher {
+        font-size: 11px;
+    }
+}

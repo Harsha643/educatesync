@@ -1,0 +1,96 @@
+.container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+  background-color: #f9fbfd;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 120px;
+  height: auto;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.form {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+input,
+.teacher-dropdown {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.button-container{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+button {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.class-teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.class-teacher-table th,
+.class-teacher-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.class-teacher-table th {
+  background-color: #eaf2fb;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .class-teacher-table {
+    font-size: 14px;
+  }
+
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input,
+  .teacher-dropdown,
+  button {
+    width: 100%;
+  }
+}

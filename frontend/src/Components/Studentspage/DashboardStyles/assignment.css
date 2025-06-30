@@ -1,0 +1,162 @@
+/* assignment.css */
+
+.assignment-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.assignment-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.assignment-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.assignment-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #fff;
+}
+
+.assignment-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.assignment-item h2 {
+  color: #3498db;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.assignment-item p {
+  color: #555;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.assignment-item p:last-child {
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+.view-doc-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.view-doc-button:hover {
+  background-color: #0056b3;
+}
+
+/* Modal overlay background */
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+/* Modal content */
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.spinner-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #ddd;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    height: 75%;
+    padding: 15px;
+  }
+
+  .assignment-list {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .assignment-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .assignment-item h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    height: 70%;
+    padding: 10px;
+  }
+
+  .assignment-container {
+    padding: 15px;
+  }
+
+  .assignment-list {
+    grid-template-columns: 1fr;
+  }
+
+  .assignment-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .assignment-item {
+    padding: 15px;
+  }
+
+  .assignment-item h2 {
+    font-size: 1.1rem;
+  }
+}

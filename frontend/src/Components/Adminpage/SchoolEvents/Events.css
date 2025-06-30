@@ -1,0 +1,118 @@
+/* Base Layout */
+.event-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f8faff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.event-title {
+  text-align: center;
+  color: #205081;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+/* Form Styling */
+.event-form {
+  display: grid;
+  gap: 15px;
+  background: #e3ecf5;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.event-form input,
+.event-form textarea {
+  padding: 12px;
+  border: 1px solid #c5d1e0;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.event-form button {
+  background-color: #2da764;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.event-form button:hover {
+  background-color: #249355;
+}
+
+/* Search bar */
+.search-bar {
+  margin: 20px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-bar input {
+  padding: 10px;
+  border: 1px solid #aac2dc;
+  border-radius: 8px;
+}
+
+/* Event Card List */
+.event-list {
+  display: grid;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Card Styles */
+.event-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-left: 5px solid #2da764;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.event-card h3 {
+  color: #205081;
+  margin-bottom: 10px;
+}
+
+.event-card p {
+  margin: 4px 0;
+  color: #333;
+}
+
+.event-card button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #205081;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.event-card button:hover {
+  background-color: #163b66;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .event-form,
+  .search-bar,
+  .event-card {
+    width: 100%;
+  }
+
+  .event-form {
+    grid-template-columns: 1fr;
+  }
+}

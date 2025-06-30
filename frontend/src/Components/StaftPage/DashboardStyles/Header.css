@@ -1,0 +1,64 @@
+/* DashboardStyles/Header.css */
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+  background-color: #fff;
+}
+
+.staff-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.staff-name,
+.staff-id {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Responsive for tablets and below */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .staff-name,
+  .staff-id {
+    font-size: 16px;
+  }
+
+  .profile-image {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Responsive for mobile */
+@media (max-width: 480px) {
+  .staff-name,
+  .staff-id {
+    font-size: 14px;
+  }
+
+  .profile-image {
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -1,0 +1,66 @@
+.assign-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.assign-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.select-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.select-group select {
+  padding: 8px;
+  flex: 1;
+}
+
+.form-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 8px;
+  flex: 1;
+}
+
+.form-group button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: #0056b3;
+}
+
+.schedule-list {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.schedule-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.schedule-list button {
+  color: red;
+  border: none;
+  background: none;
+  cursor: pointer;
+}

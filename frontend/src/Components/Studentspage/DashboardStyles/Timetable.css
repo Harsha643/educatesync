@@ -1,0 +1,102 @@
+/* Timetable.css */
+.timetable-container {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  overflow-x: auto;
+}
+
+.timetable-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.timetable-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  min-width: 800px; /* ensures table scrolls horizontally on small devices */
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 14px;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+.loading,
+.error,
+.no-data,
+.no-class,
+.no-schedule {
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  color: #555;
+}
+
+.error {
+  color: red;
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #ccc;
+  border-top: 6px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  th, td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  table {
+    min-width: 700px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  th, td {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  .timetable-container h2 {
+    font-size: 18px;
+  }
+}

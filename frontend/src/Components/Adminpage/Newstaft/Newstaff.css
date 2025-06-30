@@ -1,0 +1,178 @@
+/* ===============================
+   Modal & Layout
+   =============================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.newstaff-modal {
+  background: #f4f9ff;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 95%;
+  max-width: 900px;
+  max-height: 95vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ===============================
+   Header
+   =============================== */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.close-button {
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+}
+
+/* ===============================
+   Form Grid & Input Groups
+   =============================== */
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+
+/* @media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+} */
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 1rem 0.75rem 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: white;
+  color: #333;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.2s ease;
+}
+
+.input-group select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #666 50%),
+    linear-gradient(135deg, #666 50%, transparent 50%);
+  background-position:
+    calc(100% - 1rem) calc(50% - 0.15em),
+    calc(100% - 0.7rem) calc(50% - 0.15em);
+  background-size: 0.4em 0.4em;
+  background-repeat: no-repeat;
+}
+
+/* ===============================
+   Floating Labels
+   =============================== */
+.input-group label {
+  position: absolute;
+  top: 1rem;
+  left: 0.75rem;
+  background: #f4f9ff;
+  padding: 0 0.25rem;
+  color: #666;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group select:focus + label,
+.input-group select:valid + label {
+  top: -0.5rem;
+  left: 0.6rem;
+  font-size: 0.75rem;
+  color: #007bff;
+}
+
+/* ===============================
+   Image Upload Preview
+   =============================== */
+.image-upload {
+  grid-column: 1 / -1;
+}
+
+.image-preview img {
+  margin-top: 0.5rem;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 2px solid #ccc;
+}
+
+/* ===============================
+   Buttons
+   =============================== */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  grid-column: 1 / -1;
+}
+
+.submit-button,
+.cancel-button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
