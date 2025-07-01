@@ -15,7 +15,7 @@ const ClassManagement = () => {
 //   console.log(typeof(selectedClass))
   const fetchClasses = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/admin/students/${selectedClass}`);
+      const response = await fetch(`https://educatesync.onrender.com/admin/students/${selectedClass}`);
       const data = await response.json();
       console.log(data)
       setClasses(data);

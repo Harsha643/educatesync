@@ -20,7 +20,7 @@ app.use(errorHandler)
 
 
 app.use(cors({
-  origin: 'http://localhost:5713',
+  origin: 'https://educatesync.vercel.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
