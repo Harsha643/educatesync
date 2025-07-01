@@ -59,6 +59,7 @@
   color: white;
 }
 
+
 /* ==========================
    Modal Styles
 ============================= */
@@ -173,4 +174,12 @@
   .form-container {
     padding: 15px;
   }
+  .header-with-button h1{
+  
+font-size:18px;
+}
+.header-with-button .add-btn{
+  padding: 10px 15px;
+  width: 150px;
+} 
 }
