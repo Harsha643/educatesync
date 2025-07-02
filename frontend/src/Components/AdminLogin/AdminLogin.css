@@ -7,6 +7,35 @@ body {
   background: url('https://as2.ftcdn.net/jpg/02/10/61/87/1000_F_210618714_u6VAPB1UEYSisqMzQAJomasWDM2Ae4uO.jpg') no-repeat center center fixed;
   background-size: cover;
 }
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  background: #f0f0f0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+}
+
+.login-container select,
+.login-container input,
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.guest-warning {
+  color: orange;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: center;
+}
+
 
 /* Overlay to darken background slightly for contrast */
 body::before {

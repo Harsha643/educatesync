@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './AdminLogin.css'; // You can customize this CSS
+import './AdminLogin.css'; // Make sure to style as needed
 
 const RoleBasedLogin = () => {
   const [role, setRole] = useState('admin');
@@ -19,7 +19,6 @@ const RoleBasedLogin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch staff and student data only if role is staff or student
     if (role === 'staff') {
       fetch('https://educatesync.onrender.com/admin/staff')
         .then((res) => res.json())
@@ -38,6 +37,30 @@ const RoleBasedLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // Handle Guest Admin Login
+    if (role === 'guest-admin') {
+      toast.success('Guest Admin Login Successful');
+      setTimeout(() => navigate('/admin'), 2000);
+      return;
+    }
+
+    // Handle Guest Staff Login
+    if (role === 'guest-staff') {
+      const guestStaff = { teacherName: 'Guest Staff', subject: 'N/A' };
+      toast.success('Guest Staff Login Successful');
+      setTimeout(() => navigate('/Staff-Dashboard', { state: { staffdata: guestStaff } }), 2000);
+      return;
+    }
+
+    // Handle Guest Student Login
+    if (role === 'guest-student') {
+      const guestStudent = { name: 'Guest Student', rollNumber: 'GUEST001' };
+      toast.success('Guest Student Login Successful');
+      setTimeout(() => navigate('/Student-Dashboard', { state: { studentdata: guestStudent } }), 2000);
+      return;
+    }
+
+    // Admin Login
     if (role === 'admin') {
       try {
         const res = await fetch('https://educatesync.onrender.com/admin/auth/login', {
@@ -90,7 +113,15 @@ const RoleBasedLogin = () => {
           <option value="admin">Admin</option>
           <option value="staff">Staff</option>
           <option value="student">Student</option>
+          <option value="guest-admin">Guest Admin</option>
+          <option value="guest-staff">Guest Staff</option>
+          <option value="guest-student">Guest Student</option>
         </select>
+
+        {/* Optional Guest Info Text */}
+        {role.startsWith('guest') && (
+          <p className="guest-warning">You are logging in as a guest. Limited access granted.</p>
+        )}
 
         {/* Admin login fields */}
         {role === 'admin' && (
