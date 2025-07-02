@@ -10,6 +10,7 @@ const Home = () => {
     const [gallery, setGallery] = useState([]);
     // const [image, setImage] = useState(null);
     // const [description, setDescription] = useState('');
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
     useEffect(() => {
         fetchGallery();
@@ -17,7 +18,7 @@ const Home = () => {
 
     const fetchGallery = async () => {
         try {
-            const response = await fetch("https://educatesync.onrender.com/admin/gallery");
+            const response = await fetch(`${baseUrl}/admin/gallery`);
             const data = await response.json();
             setGallery(data);
         } catch (error) {

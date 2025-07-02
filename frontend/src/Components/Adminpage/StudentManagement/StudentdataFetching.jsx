@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import "./studentdata.css";
 
 const StudentDataFetching = () => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
   const [studentData, setStudentData] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://educatesync.onrender.com/admin/students');
+      const response = await fetch(`${baseUrl}/admin/students`);
       const data = await response.json();
       setStudentData(data);
     } catch (error) {
@@ -22,7 +24,7 @@ const StudentDataFetching = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`https://educatesync.onrender.com/admin/students/${id}`, { method: 'DELETE' });
+      await fetch(`${baseUrl}/admin/students/${id}`, { method: 'DELETE' });
       fetchData();
     } catch (error) {
       console.error('Delete error:', error);
@@ -115,8 +117,8 @@ const StudentDataFetching = () => {
 
       try {
         const url = existingStudent
-          ? `https://educatesync.onrender.com/admin/students/${student._id}`
-          : 'https://educatesync.onrender.com/admin/students';
+          ? `${baseUrl}/admin/students/${student._id}`
+          : `${baseUrl}/admin/students`;
 
         const method = existingStudent ? 'PUT' : 'POST';
 

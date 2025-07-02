@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../DashboardStyles/feedback.css';
 
 const Feedback = () => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
     const [feedback, setFeedback] = useState([]);
     const [selectedClass, setSelectedClass] = useState('');
     const [classList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -31,7 +33,7 @@ const Feedback = () => {
         async function fetchStudentsByClass() {
             if (!selectedClass) return;
             try {
-                const response = await fetch(`https://educatesync.onrender.com/admin/students/${selectedClass}`);
+                const response = await fetch(`${baseUrl}/admin/students/${selectedClass}`);
                 const data = await response.json();
                 setStudentData(data);
             } catch (error) {
@@ -70,7 +72,7 @@ const Feedback = () => {
 
     async function fetchFeedback() {
         try {
-            const response = await fetch('https://educatesync.onrender.com/staff/feedback');
+            const response = await fetch(`${baseUrl}/staff/feedback`);
             if (!response.ok) throw new Error("Failed to fetch feedback");
             const data = await response.json();
             setFeedback(data);
@@ -86,7 +88,7 @@ const Feedback = () => {
 
     const handleSubmitFeedback = async () => {
         try {
-            const response = await fetch('https://educatesync.onrender.com/staff/feedback', {
+            const response = await fetch(`${baseUrl}/staff/feedback`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)

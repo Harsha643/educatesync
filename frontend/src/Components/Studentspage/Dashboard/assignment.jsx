@@ -5,6 +5,8 @@ import "../DashboardStyles/assignment.css";
 Modal.setAppElement('#root');
 
 const Assignment = ({ classData }) => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
     const [data, setData] = useState([]);
     const [assignments, setFilteredAssignments] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -18,7 +20,7 @@ const Assignment = ({ classData }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`https://educatesync.onrender.com/staff/assignments`);
+                const response = await fetch(`${baseUrl}/staff/assignments`);
                 const result = await response.json();
                 setData(result);
             } catch (error) {
@@ -58,7 +60,7 @@ const handleSubmitAssignment = async () => {
     }
 
     try {
-        const response = await fetch('https://educatesync.onrender.com/student/assignment', {
+        const response = await fetch(`${baseUrl}/student/assignment`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

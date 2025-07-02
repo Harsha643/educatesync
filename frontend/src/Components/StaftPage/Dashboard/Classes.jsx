@@ -6,6 +6,8 @@ import "../DashboardStyles/classes.css";
 import Header from './Header'; // Adjust path if needed
 
 const Classes = () => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
     const location = useLocation();
     const staffdata = location.state?.staffdata;
 
@@ -26,7 +28,7 @@ const Classes = () => {
 
     const fetchClasses = async () => {
         try {
-            const response = await fetch('https://educatesync.onrender.com/staff/class');
+            const response = await fetch(`${baseUrl}/staff/class`);
             const data = await response.json();
             setClasses(data);
         } catch (error) {
@@ -61,7 +63,7 @@ const Classes = () => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await fetch(`https://educatesync.onrender.com/staff/class/${id}`, {
+            const res = await fetch(`${baseUrl}/staff/class/${id}`, {
                 method: 'DELETE',
             });
             if (res.ok) {
@@ -78,8 +80,8 @@ const Classes = () => {
 
     const handleSave = async () => {
         const url = selectedClass
-            ? `https://educatesync.onrender.com/staff/class/${selectedClass._id}`
-            : 'https://educatesync.onrender.com/staff/class';
+            ? `${baseUrl}/staff/class/${selectedClass._id}`
+            : `${baseUrl}/staff/class`;
 
         const method = selectedClass ? 'PUT' : 'POST';
 

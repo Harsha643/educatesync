@@ -9,6 +9,8 @@ const Gallery = () => {
   const [images, setImages] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
 
   // Fetch all images on component mount
   useEffect(() => {
@@ -18,7 +20,7 @@ const Gallery = () => {
   const fetchImages = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://educatesync.onrender.com/admin/gallery');
+      const response = await fetch(`${baseUrl}/admin/gallery`);
       if (!response.ok) throw new Error('Failed to fetch images');
       const data = await response.json();
       setImages(data);
@@ -50,13 +52,13 @@ const Gallery = () => {
       
       if (editingId) {
         // PUT request for update
-        response = await fetch(`https://educatesync.onrender.com/admin/gallery/${editingId}`, {
+        response = await fetch(`${baseUrl}/admin/gallery/${editingId}`, {
           method: 'PUT',
           body: formData
         });
       } else {
         // POST request for create
-        response = await fetch('https://educatesync.onrender.com/admin/gallery', {
+        response = await fetch(`${baseUrl}/admin/gallery`, {
           method: 'POST',
           body: formData
         });
@@ -86,7 +88,7 @@ const Gallery = () => {
   const handleDelete = async (id) => {
     try {
       setLoading(true);
-      const response = await fetch(`https://educatesync.onrender.com/admin/gallery/${id}`, {
+      const response = await fetch(`${baseUrl}/admin/gallery/${id}`, {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Failed to delete image');

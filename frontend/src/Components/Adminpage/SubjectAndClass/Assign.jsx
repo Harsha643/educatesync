@@ -8,11 +8,12 @@ const Assign = () => {
   const [newEntry, setNewEntry] = useState({ subject: "", time: "", teacher: "" });
   const [staff, setStaff] = useState([]);
   const [teacher, setTeacher] = useState("");
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
   useEffect(() => {
     const fetchTimetable = async () => {
       try {
-        const response = await fetch(`https://educatesync.onrender.com/admin/timetable/${className}/${day}`);
+        const response = await fetch(`${baseUrl}/admin/timetable/${className}/${day}`);
         if (!response.ok) throw new Error("Not found");
         const data = await response.json();
         setSchedule(data.schedule || []);
@@ -24,7 +25,7 @@ const Assign = () => {
 
     const fetchStaff = async () => {
       try {
-        const res = await fetch(`https://educatesync.onrender.com/admin/staff/${newEntry.subject}`);
+        const res = await fetch(`${baseUrl}/admin/staff/${newEntry.subject}`);
         const data = await res.json();
         setStaff(data);
       } catch (err) {
@@ -54,7 +55,7 @@ const Assign = () => {
     };
 
     try {
-      const response = await fetch("https://educatesync.onrender.com/admin/timetable", {
+      const response = await fetch(`${baseUrl}/admin/timetable`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -88,14 +89,14 @@ const Assign = () => {
 
   const handleDelete = async (scheduleItemId) => {
     try {
-      const res = await fetch(`https://educatesync.onrender.com/admin/timetable/${className}/${day}`);
+      const res = await fetch(`${baseUrl}/admin/timetable/${className}/${day}`);
       if (!res.ok) throw new Error("Failed to fetch timetable");
 
       const data = await res.json();
       const timetableId = data._id;
 
       const deleteRes = await fetch(
-        `https://educatesync.onrender.com/admin/timetable/${timetableId}/${scheduleItemId}`,
+        `${baseUrl}/admin/timetable/${timetableId}/${scheduleItemId}`,
         {
           method: "DELETE",
         }

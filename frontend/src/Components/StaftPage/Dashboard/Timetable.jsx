@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Timetable = () => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
     const [data, setData] = useState([]);
     const location = useLocation();
     const staff = location.state?.staffdata;
@@ -17,7 +19,7 @@ const Timetable = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://educatesync.onrender.com/admin/timetable");
+                const response = await fetch( `${baseUrl}/admin/timetable`);
                 const result = await response.json();
                 setData(result);
                 toast.success("Timetable loaded successfully");

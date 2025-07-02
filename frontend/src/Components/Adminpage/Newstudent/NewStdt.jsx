@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewStdt = ({ existingStudent, onClose, refreshData }) => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
   const [student, setStudent] = useState({
     studentName: '',
     fatherName: '',
@@ -65,7 +67,7 @@ const NewStdt = ({ existingStudent, onClose, refreshData }) => {
 
   try {
     // Step 1: Get all existing students
-    const allStudentsRes = await fetch("https://educatesync.onrender.com/admin/students");
+    const allStudentsRes = await fetch(`${baseUrl}/admin/students`);
     const allStudents = await allStudentsRes.json();
 
     // Step 2: Check for duplicate Aadhar (ignore check if updating existing)
@@ -89,7 +91,7 @@ const NewStdt = ({ existingStudent, onClose, refreshData }) => {
       }
     });
 
-    const url = "https://educatesync.onrender.com/admin/students";
+    const url = `${baseUrl}/admin/students`;
     const method = "POST";
 
     const response = await fetch(url, {

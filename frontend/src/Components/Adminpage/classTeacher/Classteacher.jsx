@@ -7,11 +7,12 @@ const ClassTeacher = () => {
   const [editingClass, setEditingClass] = useState(null);
   const [teachers, setTeacherdata] = useState([]);
   const [loading, setLoading] = useState(true); // <-- loading state
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
-  const BASE_URL = "https://educatesync.onrender.com/admin/classteacher";
+  const BASE_URL = `${baseUrl}/admin/classteacher`;
 
   const getTeachers = async () => {
-    const res = await fetch(`https://educatesync.onrender.com/admin/staff`);
+    const res = await fetch(`${baseUrl}/admin/staff`);
     const data = await res.json();
     setTeacherdata(data);
   };

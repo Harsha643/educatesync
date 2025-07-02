@@ -16,7 +16,7 @@ const Nav = () => {
       const fetchProfile = async () => {
         const token = localStorage.getItem('token');
   
-        const res = await fetch('https://educatesync.onrender.com/admin/auth/me', {
+        const res = await fetch(`${baseUrl}/admin/auth/me`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

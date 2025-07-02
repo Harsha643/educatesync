@@ -5,13 +5,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const StaffDataFetching = () => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
+  
   const [staffData, setStaffData] = useState([]);
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://educatesync.onrender.com/admin/staff');
+      const response = await fetch(`${baseUrl}/admin/staff`);
       const data = await response.json();
       setStaffData(data);
     } catch (error) {
@@ -26,7 +29,7 @@ const StaffDataFetching = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`https://educatesync.onrender.com/admin/staff/${id._id}`, { method: 'DELETE' });
+      await fetch(`${baseUrl}/admin/staff/${id._id}`, { method: 'DELETE' });
       toast.success("Staff deleted successfully");
       fetchData();
     } catch (error) {

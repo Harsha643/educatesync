@@ -15,6 +15,8 @@ const Feedback = () => {
     const [studentData, setStudentData] = useState([]);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
     const [formData, setFormData] = useState({
         studentName: '',
         rollNumber: '',
@@ -31,7 +33,7 @@ const Feedback = () => {
         async function fetchStudentsByClass() {
             if (!selectedClass) return;
             try {
-                const response = await fetch(`https://educatesync.onrender.com/admin/students/${selectedClass}`);
+                const response = await fetch(`${baseUrl}/admin/students/${selectedClass}`);
                 const data = await response.json();
                 setStudentData(data);
             } catch (error) {
@@ -66,7 +68,7 @@ const Feedback = () => {
     };
     async function fetchFeedback() {
         try {
-            const response = await fetch('https://educatesync.onrender.com/staff/feedback');
+            const response = await fetch(`${baseUrl}/staff/feedback`);
             if (!response.ok) throw new Error("Failed to fetch feedback");
             const data = await response.json();
             console.log("Feedback data:", data);
@@ -85,7 +87,7 @@ const Feedback = () => {
         console.log(feedback)
     const handleSubmitFeedback = async () => {
         try {
-            const response = await fetch('https://educatesync.onrender.com/staff/feedback', {
+            const response = await fetch(`${baseUrl}/staff/feedback`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)

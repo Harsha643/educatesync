@@ -8,6 +8,8 @@ import '../DashboardStyles/Assignment.css';
 Modal.setAppElement('#root'); // Accessibility
 
 const Assignment = () => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
     const [assignments, setAssignments] = useState([]);
     const [editIndex, setEditIndex] = useState(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -33,7 +35,7 @@ const Assignment = () => {
 
     const fetchAssignment = async () => {
         try {
-            const response = await fetch('https://educatesync.onrender.com/staff/assignments');
+            const response = await fetch(`${baseUrl}/staff/assignments`);
             const data = await response.json();
             setAssignments(Array.isArray(data) ? data : []);
         } catch (error) {
@@ -63,14 +65,14 @@ const Assignment = () => {
         try {
             if (editIndex !== null) {
                 const id = assignments[editIndex]._id;
-                await fetch(`https://educatesync.onrender.com/staff/assignments/${id}`, {
+                await fetch(`${baseUrl}/staff/assignments/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(form),
                 });
                 toast.success('Assignment updated successfully!');
             } else {
-                await fetch('https://educatesync.onrender.com/staff/assignments', {
+                await fetch(`${baseUrl}/staff/assignments`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(form),

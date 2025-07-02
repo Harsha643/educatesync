@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Notes.css";
 import { useLocation } from 'react-router-dom';
 const Notes = ({staffdata}) => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
+
     const [notes, setNotes] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([]);
     const [selectedNote, setSelectedNote] = useState(null);
@@ -23,7 +26,7 @@ const Notes = ({staffdata}) => {
 
     const fetchNotes = async () => {
         try {
-            const response = await fetch("https://educatesync.onrender.com/staff/notes");
+            const response = await fetch(`${baseUrl}/staff/notes`);
             const data = await response.json();
             setNotes(data);
         } catch (error) {
@@ -62,7 +65,7 @@ const Notes = ({staffdata}) => {
 
     const handleDelete = async (id) => {
         try {
-            await fetch(`https://educatesync.onrender.com/staff/notes/${id}`, {
+            await fetch(`${baseUrl}/staff/notes/${id}`, {
                 method: "DELETE"
             });
             const updatedNotes = notes.filter(note => note._id !== id);
@@ -81,8 +84,8 @@ const Notes = ({staffdata}) => {
     const handleSubmit = async () => {
         try {
             const url = isEditing
-                ? `https://educatesync.onrender.com/staff/notes/${selectedNote._id}`
-                : `https://educatesync.onrender.com/staff/notes`;
+                ? `${baseUrl}/staff/notes/${selectedNote._id}`
+                : `${baseUrl}/staff/notes`;
 
             const method = isEditing ? "PUT" : "POST";
 

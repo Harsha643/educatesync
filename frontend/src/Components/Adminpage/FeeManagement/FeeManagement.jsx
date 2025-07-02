@@ -4,13 +4,15 @@ const FeeManagement = () => {
     const [students, setStudents] = useState([]);
     const [editingId, setEditingId] = useState(null);
     const [editedFees, setEditedFees] = useState({});
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
 
     useEffect(() => {
         fetchStudents();
     }, []);
 
     const fetchStudents = () => {
-        fetch("https://educatesync.onrender.com/admin/students")
+        fetch(`${baseUrl}/admin/students`)
             .then((res) => res.json())
             .then(setStudents)
             .catch((err) => console.error("Error fetching students:", err));
@@ -36,7 +38,7 @@ const FeeManagement = () => {
             (editedFees.lab ?? 0);
         const updatedFees = { ...editedFees, total };
 
-        fetch(`https://educatesync.onrender.com/admin/students/${id}/fees`, {
+        fetch(`${baseUrl}/admin/students/${id}/fees`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedFees),

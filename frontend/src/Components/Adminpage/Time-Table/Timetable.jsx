@@ -3,11 +3,13 @@ import "./Timetable.css";
 
 const Timetable = () => {
     const [data, setData] = useState([]);
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://educatesync.onrender.com/admin/timetable');
+                const response = await fetch(`${baseUrl}/admin/timetable`);
                 const data = await response.json();
                 setData(data);
             } catch (error) {

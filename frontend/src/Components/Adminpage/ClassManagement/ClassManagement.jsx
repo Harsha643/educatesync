@@ -5,6 +5,8 @@ const ClassManagement = () => {
   const [classes, setClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState(9);
 
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+  
   useEffect(() => {
     if (selectedClass) {
       fetchClasses();
@@ -14,7 +16,7 @@ const ClassManagement = () => {
   const fetchClasses = async () => {
     try {
       const response = await fetch(
-        `https://educatesync.onrender.com/admin/students/${selectedClass}`
+        `${baseUrl}/admin/students/${selectedClass}`
       );
       const data = await response.json();
       setClasses(data);

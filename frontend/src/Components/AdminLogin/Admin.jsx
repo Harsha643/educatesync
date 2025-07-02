@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './AdminLogin.css'; // Make sure to style as needed
+import './AdminLogin.css'; // Make sure to style as 
+
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
 const RoleBasedLogin = () => {
   const [role, setRole] = useState('admin');
@@ -20,11 +22,11 @@ const RoleBasedLogin = () => {
 
   useEffect(() => {
     if (role === 'staff') {
-      fetch('https://educatesync.onrender.com/admin/staff')
+      fetch(`${baseUrl}/admin/staff`)
         .then((res) => res.json())
         .then(setStaffList);
     } else if (role === 'student') {
-      fetch('https://educatesync.onrender.com/admin/students')
+      fetch(`${baseUrl}/admin/students`)
         .then((res) => res.json())
         .then(setStudentList);
     }
@@ -38,14 +40,14 @@ const RoleBasedLogin = () => {
     e.preventDefault();
 
     // Handle Guest Admin Login
-    if (role === 'guest-admin') {
+    if (role === 'admin') {
       toast.success('Guest Admin Login Successful');
       setTimeout(() => navigate('/admin'), 2000);
       return;
     }
 
     // Handle Guest Staff Login
-    if (role === 'guest-staff') {
+    if (role === 'staff') {
       const guestStaff = { teacherName: 'Guest Staff', subject: 'N/A' };
       toast.success('Guest Staff Login Successful');
       setTimeout(() => navigate('/Staff-Dashboard', { state: { staffdata: guestStaff } }), 2000);
@@ -53,7 +55,7 @@ const RoleBasedLogin = () => {
     }
 
     // Handle Guest Student Login
-    if (role === 'guest-student') {
+    if (role === 'student') {
       const guestStudent = { name: 'Guest Student', rollNumber: 'GUEST001' };
       toast.success('Guest Student Login Successful');
       setTimeout(() => navigate('/Student-Dashboard', { state: { studentdata: guestStudent } }), 2000);
@@ -63,7 +65,7 @@ const RoleBasedLogin = () => {
     // Admin Login
     if (role === 'admin') {
       try {
-        const res = await fetch('https://educatesync.onrender.com/admin/auth/login', {
+        const res = await fetch(`${baseUrl}/admin/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: formData.email, password: formData.password }),
@@ -113,15 +115,13 @@ const RoleBasedLogin = () => {
           <option value="admin">Admin</option>
           <option value="staff">Staff</option>
           <option value="student">Student</option>
-          <option value="guest-admin">Guest Admin</option>
-          <option value="guest-staff">Guest Staff</option>
-          <option value="guest-student">Guest Student</option>
+         
         </select>
 
-        {/* Optional Guest Info Text */}
+        {/* Optional Guest Info Text
         {role.startsWith('guest') && (
           <p className="guest-warning">You are logging in as a guest. Limited access granted.</p>
-        )}
+        )} */}
 
         {/* Admin login fields */}
         {role === 'admin' && (
@@ -190,6 +190,7 @@ const RoleBasedLogin = () => {
         )}
 
         <button type="submit">Login</button>
+        <button type='submit'>Guest Login</button>
       </form>
 
       <ToastContainer position="top-right" autoClose={2000} />

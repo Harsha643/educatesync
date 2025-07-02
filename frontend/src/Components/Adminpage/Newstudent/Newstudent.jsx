@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Newstudent = ({ existingStudent, onClose, refreshData }) => {
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
   const [student, setStudent] = useState({
     studentName: '',
     fatherName: '',
@@ -63,7 +65,7 @@ const Newstudent = ({ existingStudent, onClose, refreshData }) => {
     e.preventDefault();
 
     try {
-      const allStudentsRes = await fetch("https://educatesync.onrender.com/admin/students");
+      const allStudentsRes = await fetch(`${baseUrl}/admin/students`);
       const allStudents = await allStudentsRes.json();
 
       const isDuplicate = allStudents.some(
@@ -86,8 +88,8 @@ const Newstudent = ({ existingStudent, onClose, refreshData }) => {
       });
 
       const url = existingStudent
-        ? `https://educatesync.onrender.com/admin/students/${student._id}`
-        : 'https://educatesync.onrender.com/admin/students';
+        ? `${baseurl}/admin/students/${student._id}`
+        : `${baseUrl}/admin/students`;
 
       const method = existingStudent ? 'PUT' : 'POST';
 

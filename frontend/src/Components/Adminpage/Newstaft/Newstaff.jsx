@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Newstaff = ({ existingStaff, onClose, refreshData }) => {
   const navigate = useNavigate();
+const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+
   const [staff, setStaff] = useState({
     teacherName: '',
     gender: '',
@@ -76,7 +78,7 @@ const Newstaff = ({ existingStaff, onClose, refreshData }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://educatesync.onrender.com/admin/staff");
+      const res = await fetch(`${baseUrl}/admin/staff`);
       const allStaff = await res.json();
 
       const isDuplicate = allStaff.some(
@@ -98,8 +100,8 @@ const Newstaff = ({ existingStaff, onClose, refreshData }) => {
       }
 
       const url = existingStaff
-        ? `https://educatesync.onrender.com/admin/staff/${existingStaff.staffId}`
-        : 'https://educatesync.onrender.com/admin/staff';
+        ? `${baseUrl}/admin/staff/${existingStaff.staffId}`
+        : `${baeUrl}/admin/staff`;
 
       const method = existingStaff ? 'PUT' : 'POST';
 
