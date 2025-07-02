@@ -24,28 +24,58 @@ h2 {
   margin-bottom: 15px;
 }
 
+/* ===== FORM STYLES ===== */
 .form {
   margin-bottom: 20px;
   display: flex;
+  /* flex-wrap: wrap; */
   gap: 10px;
-  flex-wrap: wrap;
   justify-content: center;
 }
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #3498db;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 input,
 .teacher-dropdown {
-  padding: 8px;
+  padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  min-width: 100px;
+  flex: 1;
+  /* max-width: 300px; */
 }
-.button-container{
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+
+.button-container,
+.form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
+
 button {
-  padding: 8px 12px;
+  padding: 10px 16px;
   font-size: 16px;
   border: none;
   background-color: #3498db;
@@ -59,11 +89,18 @@ button:hover {
   background-color: #2980b9;
 }
 
+/* ===== TABLE STYLES ===== */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  margin-top: 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
 .class-teacher-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  overflow-x: auto;
+  min-width: 600px;
 }
 
 .class-teacher-table th,
@@ -78,11 +115,8 @@ button:hover {
   color: #333;
 }
 
+/* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
-  .class-teacher-table {
-    font-size: 14px;
-  }
-
   .form {
     flex-direction: column;
     align-items: stretch;
@@ -92,5 +126,36 @@ button:hover {
   .teacher-dropdown,
   button {
     width: 100%;
+    max-width: 100%;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .class-teacher-table {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .form {
+    gap: 8px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+  .class-teacher-table {
+    font-size: 13px;
   }
 }

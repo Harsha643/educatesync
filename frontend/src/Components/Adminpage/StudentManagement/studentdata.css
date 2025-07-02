@@ -181,5 +181,6 @@ font-size:18px;
 .header-with-button .add-btn{
   padding: 10px 15px;
   width: 150px;
+  font-size: 10px;
 } 
 }

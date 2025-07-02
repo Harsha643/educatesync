@@ -139,6 +139,7 @@ const Notes = ({staffdata}) => {
             {selectedClass && filteredNotes.length === 0 ? (
                 <p className="no-notes-msg">This class notes are not present</p>
             ) : (
+                <div className="table-wrapper">
                 <table className="notes-table">
                     <thead>
                         <tr>
@@ -170,6 +171,7 @@ const Notes = ({staffdata}) => {
                         ))}
                     </tbody>
                 </table>
+                </div>
             )}
 
             {/* Add/Edit Modal */}

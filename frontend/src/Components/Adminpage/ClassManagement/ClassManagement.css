@@ -1,108 +1,119 @@
-/* ClassManagement.css */
-
-.class-management {
+body {
+  background-color: #F4F9FB;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
 }
 
-.class-management h1 {
+h1 {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 25px;
-  font-size: 28px;
+  font-size: 2rem;
+  margin: 20px 0;
+  color: #0077C2;
 }
 
-.class-management select {
-  padding: 8px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  background-color: white;
+/* Dropdown styling */
+select {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #E3F2FD;
+  color: #0077C2;
   cursor: pointer;
+  width: 90%;
+  max-width: 300px;
+  transition: 0.3s ease;
 }
 
-.class-management select:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+select:hover {
+  border-color: #00B86B;
 }
 
+/* Scrollable container */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 10px;
+}
+
+/* Table styles */
 .class-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  font-size: 14px;
+  min-width: 1000px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 119, 194, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.class-table thead {
-  background-color: #3498db;
-  color: white;
-  position: sticky;
-  top: 0;
+.class-table th,
+.class-table td {
+  padding: 10px;
+  text-align: left;
+  font-size: 0.95rem;
+  border: 1px solid #ddd;
+  color: #222831;
 }
 
 .class-table th {
-  padding: 12px 10px;
-  text-align: left;
-  font-weight: 600;
+  background-color: #0077C2;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-.class-table td {
-  padding: 10px;
-  border-bottom: 1px solid #e0e0e0;
-  vertical-align: top;
+.class-table tr:nth-child(even) {
+  background-color: #F4F9FB;
 }
 
-.class-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
+.class-table tr:hover {
+  background-color: #D9F9EB;
 }
 
-.class-table tbody tr:hover {
-  background-color: #f1f8fe;
-}
-
-.no-students-message {
+.no-students {
   text-align: center;
-  margin-top: 20px;
-  color: #7f8c8d;
-  font-style: italic;
+  font-size: 1.2rem;
+  color: #e53935;
+  font-weight: bold;
+  padding: 20px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .class-table-container {
-    overflow-x: auto;
-    margin: 0 -20px;
-    padding: 0 20px;
-  }
-  
-  .class-table {
-    min-width: 1000px;
-  }
-  
-  .class-table th, 
-  .class-table td {
-    padding: 8px;
-    font-size: 13px;
-  }
-}
-
+/* Tablet */
 @media (max-width: 768px) {
-  .class-management {
-    padding: 15px;
+  h1 {
+    font-size: 1.5rem;
   }
-  
-  .class-management h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+
+  select {
+    font-size: 1rem;
+    padding: 10px;
   }
-  
-  .class-management select {
-    width: 100%;
-    margin-bottom: 15px;
+
+  .class-table th,
+  .class-table td {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  select {
+    font-size: 0.9rem;
+  }
+
+  .class-table th,
+  .class-table td {
+    font-size: 0.75rem;
+    padding: 6px;
   }
 }

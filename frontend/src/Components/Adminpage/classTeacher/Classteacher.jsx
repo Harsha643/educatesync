@@ -5,36 +5,35 @@ const ClassTeacher = () => {
   const [classTeachers, setClassTeachers] = useState([]);
   const [form, setForm] = useState({ classNumber: "", teacherName: "" });
   const [editingClass, setEditingClass] = useState(null);
-  const [teachers,setTeacherdata]=useState([])
+  const [teachers, setTeacherdata] = useState([]);
+  const [loading, setLoading] = useState(true); // <-- loading state
 
   const BASE_URL = "https://educatesync.onrender.com/admin/classteacher";
 
-  const getTeachers=async ()=>{
-    const res=await fetch(`https://educatesync.onrender.com/admin/staff`)
-    const data=await res.json()
-    setTeacherdata(data)
-    }
-  
+  const getTeachers = async () => {
+    const res = await fetch(`https://educatesync.onrender.com/admin/staff`);
+    const data = await res.json();
+    setTeacherdata(data);
+  };
 
-
-  // Fetch all class teachers
   const fetchClassTeachers = async () => {
     try {
+      setLoading(true); // start loading
       const res = await fetch(BASE_URL);
       const data = await res.json();
       setClassTeachers(data);
+      setLoading(false); // stop loading
     } catch (err) {
       alert("Error fetching class teachers");
+      setLoading(false); // ensure it stops even on error
     }
   };
 
   useEffect(() => {
     fetchClassTeachers();
-    getTeachers()
+    getTeachers();
   }, []);
-console.log(teachers)
 
-  // Create or update a class teacher
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -59,14 +58,12 @@ console.log(teachers)
     }
   };
 
-  // Populate form for editing
   const handleEdit = (classNumber) => {
     const ct = classTeachers.find((c) => c.classNumber === classNumber);
     setForm({ classNumber: ct.classNumber, teacherName: ct.teacherName });
     setEditingClass(classNumber);
   };
 
-  // Delete a class teacher
   const handleDelete = async (classNumber) => {
     try {
       const res = await fetch(`${BASE_URL}/${classNumber}`, {
@@ -80,7 +77,7 @@ console.log(teachers)
       alert("Error deleting class teacher");
     }
   };
-  console.log("93",teachers)
+
   return (
     <div className="container">
       <h2>Class Teacher Management</h2>
@@ -90,24 +87,34 @@ console.log(teachers)
           type="text"
           placeholder="Class Number"
           value={form.classNumber}
-          onChange={(e) => setForm({ ...form, classNumber: e.target.value })}
+          onChange={(e) =>
+            setForm({ ...form, classNumber: e.target.value })
+          }
           required
         />
-        <select
-    value={form.teacherName}
-    onChange={(e) => setForm({ ...form, teacherName: e.target.value })}
-    className="teacher-dropdown"
-  required
->
-  <option value="" disabled>Select a teacher</option>
-  {teachers.map((teacher, index) => (
 
-    <option key={index} value={teacher.teacherName}>
-      {teacher.teacherName}
-    </option>
-  ))}
-</select>
-        <button type="submit">{editingClass ? "Update" : "Add"} Teacher</button>
+        <select
+          value={form.teacherName}
+          onChange={(e) =>
+            setForm({ ...form, teacherName: e.target.value })
+          }
+          className="teacher-dropdown"
+          required
+        >
+          <option value="" disabled>
+            Select a teacher
+          </option>
+          {teachers.map((teacher, index) => (
+            <option key={index} value={teacher.teacherName}>
+              {teacher.teacherName}
+            </option>
+          ))}
+        </select>
+
+        <button type="submit">
+          {editingClass ? "Update" : "Add"} Teacher
+        </button>
+
         {editingClass && (
           <button
             type="button"
@@ -121,27 +128,40 @@ console.log(teachers)
         )}
       </form>
 
-      <table className="class-teacher-table">
-        <thead>
-          <tr>
-            <th>Class Number</th>
-            <th>Teacher Name</th>
-            <th>Actions</th>
+      {/* Loading Screen */}
+     {loading ? (
+  <div className="loading-screen">
+    <div className="spinner"></div>
+  </div>
+) : (
+  <div className="table-wrapper">
+    <table className="class-teacher-table">
+      <thead>
+        <tr>
+          <th>Class Number</th>
+          <th>Teacher Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {classTeachers.map((ct) => (
+          <tr key={ct.classNumber}>
+            <td>{ct.classNumber}</td>
+            <td>{ct.teacherName}</td>
+            <td className="button-container">
+              <button onClick={() => handleEdit(ct.classNumber)}>
+                Edit
+              </button>
+              <button onClick={() => handleDelete(ct.classNumber)}>
+                Delete
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {classTeachers.map((ct) => (
-            <tr key={ct.classNumber}>
-              <td>{ct.classNumber}</td>
-              <td>{ct.teacherName}</td>
-              <td className="button-container">
-                <button onClick={() => handleEdit(ct.classNumber)}>Edit</button>
-                <button onClick={() => handleDelete(ct.classNumber)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}    
     </div>
   );
 };
