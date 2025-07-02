@@ -86,8 +86,8 @@ const Newstudent = ({ existingStudent, onClose, refreshData }) => {
       });
 
       const url = existingStudent
-        ? `http://localhost:4000/admin/students/${student._id}`
-        : 'http://localhost:4000/admin/students';
+        ? `https://educatesync.onrender.com/admin/students/${student._id}`
+        : 'https://educatesync.onrender.com/admin/students';
 
       const method = existingStudent ? 'PUT' : 'POST';
 

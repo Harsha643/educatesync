@@ -89,7 +89,7 @@ const NewStdt = ({ existingStudent, onClose, refreshData }) => {
       }
     });
 
-    const url = "http://localhost:4000/admin/students";
+    const url = "https://educatesync.onrender.com/admin/students";
     const method = "POST";
 
     const response = await fetch(url, {

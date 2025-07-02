@@ -50,13 +50,13 @@ const Gallery = () => {
       
       if (editingId) {
         // PUT request for update
-        response = await fetch(`http://localhost:4000/admin/gallery/${editingId}`, {
+        response = await fetch(`https://educatesync.onrender.com/admin/gallery/${editingId}`, {
           method: 'PUT',
           body: formData
         });
       } else {
         // POST request for create
-        response = await fetch('http://localhost:4000/admin/gallery', {
+        response = await fetch('https://educatesync.onrender.com/admin/gallery', {
           method: 'POST',
           body: formData
         });
@@ -86,7 +86,7 @@ const Gallery = () => {
   const handleDelete = async (id) => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:4000/admin/gallery/${id}`, {
+      const response = await fetch(`https://educatesync.onrender.com/admin/gallery/${id}`, {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Failed to delete image');
