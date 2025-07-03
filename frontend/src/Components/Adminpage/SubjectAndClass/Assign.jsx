@@ -74,19 +74,6 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
   };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   const handleDelete = async (scheduleItemId) => {
     try {
       const res = await fetch(`${baseUrl}/admin/timetable/${className}/${day}`);

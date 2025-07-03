@@ -16,6 +16,48 @@
   color: #333;
 }
 
+
+.skeleton-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+}
+
+.skeleton-line,
+.skeleton-input,
+.skeleton-button {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f6f6f6 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+  border-radius: 6px;
+}
+
+.skeleton-line {
+  height: 18px;
+  width: 100%;
+}
+
+.skeleton-input {
+  height: 38px;
+  width: 100%;
+}
+
+.skeleton-button {
+  height: 40px;
+  width: 160px;
+  align-self: flex-start;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 /* Input rows (2 per row) */
 .student-form__row {
   display: flex;

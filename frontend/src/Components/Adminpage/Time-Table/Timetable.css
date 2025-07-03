@@ -8,6 +8,12 @@
     border-collapse: collapse;
     margin-top: 20px;
 }
+.loading-spinner {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+}
 
 .timetable th {
     background-color: #f2f2f2;

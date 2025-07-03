@@ -14,6 +14,29 @@
   font-size: 28px;
 }
 
+.pagination-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  align-items: center;
+}
+
+.pagination-controls button {
+  padding: 8px 14px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
 .fee-table {
   width: 100%;
   border-collapse: collapse;

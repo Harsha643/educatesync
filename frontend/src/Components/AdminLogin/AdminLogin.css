@@ -1,43 +1,14 @@
-/* AdminLogin.css */
-
+/* ===== Global Styles ===== */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: url('https://as2.ftcdn.net/jpg/02/10/61/87/1000_F_210618714_u6VAPB1UEYSisqMzQAJomasWDM2Ae4uO.jpg') no-repeat center center fixed;
   background-size: cover;
-}
-.login-container {
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  border-radius: 8px;
-  background: #f0f0f0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  position: relative;
 }
 
-.login-container h2 {
-  text-align: center;
-}
-
-.login-container select,
-.login-container input,
-.login-container button {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.guest-warning {
-  color: orange;
-  font-size: 0.9rem;
-  margin-top: 5px;
-  text-align: center;
-}
-
-
-/* Overlay to darken background slightly for contrast */
+/* ===== Overlay for Contrast ===== */
 body::before {
   content: "";
   position: fixed;
@@ -45,10 +16,11 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.85); /* Slight white overlay */
+  background: rgba(255, 255, 255, 0.85); /* White transparent overlay */
   z-index: -1;
 }
 
+/* ===== Login Container ===== */
 .login-container {
   max-width: 400px;
   margin: 60px auto;
@@ -56,7 +28,6 @@ body::before {
   border-radius: 12px;
   padding: 30px 25px 40px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  position: relative;
   text-align: center;
   z-index: 1;
 }
@@ -67,6 +38,7 @@ body::before {
   margin-bottom: 25px;
 }
 
+/* ===== Form Styles ===== */
 form {
   display: flex;
   flex-direction: column;
@@ -80,6 +52,7 @@ input {
   border: 1px solid #ccc;
   font-size: 14px;
   transition: border-color 0.3s ease;
+  width: 100%;
 }
 
 input:focus,
@@ -89,7 +62,9 @@ select:focus {
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
 }
 
-button[type="submit"] {
+/* ===== Buttons ===== */
+button[type="submit"],
+button[type="button"] {
   background-color: #007bff;
   color: white;
   border: none;
@@ -100,16 +75,25 @@ button[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover,
+button[type="button"]:hover {
   background-color: #0056b3;
 }
 
-/* Toast fix */
+/* ===== Guest Note Styling ===== */
+.guest-warning {
+  color: orange;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* ===== Toast Notifications ===== */
 .Toastify__toast-container {
   z-index: 9999;
 }
 
-/* Tablet and Mobile Responsive */
+/* ===== Responsive Design ===== */
 @media (max-width: 768px) {
   .login-container {
     max-width: 90%;

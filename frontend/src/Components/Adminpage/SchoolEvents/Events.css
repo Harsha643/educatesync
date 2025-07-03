@@ -12,6 +12,14 @@
   font-size: 2rem;
 }
 
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px;
+  color: #555;
+}
+
 .event-form {
   display: flex;
   flex-wrap: wrap;
@@ -19,14 +27,17 @@
   margin-bottom: 20px;
 }
 
-.event-form input,
+.event-from input{
+  width: 100%;
+  padding: 10px;
+}
 .event-form textarea,
 .event-form button {
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
-  flex: 1 1 300px;
+  flex: 1 1 100px;
 }
 
 .event-form textarea {

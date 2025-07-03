@@ -6,9 +6,13 @@ const ClassTeacher = () => {
   const [form, setForm] = useState({ classNumber: "", teacherName: "" });
   const [editingClass, setEditingClass] = useState(null);
   const [teachers, setTeacherdata] = useState([]);
-  const [loading, setLoading] = useState(true); // <-- loading state
-const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+  const [loading, setLoading] = useState(true);
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  const baseUrl = "https://educatesync.onrender.com" || "http://localhost:4000";
   const BASE_URL = `${baseUrl}/admin/classteacher`;
 
   const getTeachers = async () => {
@@ -19,14 +23,14 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
   const fetchClassTeachers = async () => {
     try {
-      setLoading(true); // start loading
+      setLoading(true);
       const res = await fetch(BASE_URL);
       const data = await res.json();
       setClassTeachers(data);
-      setLoading(false); // stop loading
     } catch (err) {
       alert("Error fetching class teachers");
-      setLoading(false); // ensure it stops even on error
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,6 +83,19 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
     }
   };
 
+  // Pagination Logic
+  const totalPages = Math.ceil(classTeachers.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentTeachers = classTeachers.slice(startIndex, startIndex + itemsPerPage);
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
   return (
     <div className="container">
       <h2>Class Teacher Management</h2>
@@ -88,23 +105,17 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
           type="text"
           placeholder="Class Number"
           value={form.classNumber}
-          onChange={(e) =>
-            setForm({ ...form, classNumber: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, classNumber: e.target.value })}
           required
         />
 
         <select
           value={form.teacherName}
-          onChange={(e) =>
-            setForm({ ...form, teacherName: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, teacherName: e.target.value })}
           className="teacher-dropdown"
           required
         >
-          <option value="" disabled>
-            Select a teacher
-          </option>
+          <option value="" disabled>Select a teacher</option>
           {teachers.map((teacher, index) => (
             <option key={index} value={teacher.teacherName}>
               {teacher.teacherName}
@@ -112,9 +123,7 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
           ))}
         </select>
 
-        <button type="submit">
-          {editingClass ? "Update" : "Add"} Teacher
-        </button>
+        <button type="submit">{editingClass ? "Update" : "Add"} Teacher</button>
 
         {editingClass && (
           <button
@@ -129,40 +138,43 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
         )}
       </form>
 
-      {/* Loading Screen */}
-     {loading ? (
-  <div className="loading-screen">
-    <div className="spinner"></div>
-  </div>
-) : (
-  <div className="table-wrapper">
-    <table className="class-teacher-table">
-      <thead>
-        <tr>
-          <th>Class Number</th>
-          <th>Teacher Name</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {classTeachers.map((ct) => (
-          <tr key={ct.classNumber}>
-            <td>{ct.classNumber}</td>
-            <td>{ct.teacherName}</td>
-            <td className="button-container">
-              <button onClick={() => handleEdit(ct.classNumber)}>
-                Edit
-              </button>
-              <button onClick={() => handleDelete(ct.classNumber)}>
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-)}    
+      {loading ? (
+        <div className="loading-screen">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <>
+          <div className="table-wrapper">
+            <table className="class-teacher-table">
+              <thead>
+                <tr>
+                  <th>Class Number</th>
+                  <th>Teacher Name</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentTeachers.map((ct) => (
+                  <tr key={ct.classNumber}>
+                    <td>{ct.classNumber}</td>
+                    <td>{ct.teacherName}</td>
+                    <td className="button-container">
+                      <button onClick={() => handleEdit(ct.classNumber)}>Edit</button>
+                      <button onClick={() => handleDelete(ct.classNumber)}>Delete</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="pagination">
+            <button onClick={handlePrev} disabled={currentPage === 1}>⬅ Prev</button>
+            <span>Page {currentPage} of {totalPages}</span>
+            <button onClick={handleNext} disabled={currentPage === totalPages}>Next ➡</button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

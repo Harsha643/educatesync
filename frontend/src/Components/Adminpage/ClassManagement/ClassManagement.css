@@ -28,6 +28,36 @@ select {
   transition: 0.3s ease;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
 select:hover {
   border-color: #00B86B;
 }
@@ -38,6 +68,28 @@ select:hover {
   overflow-x: auto;
   padding: 0 10px;
 }
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #007bff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 /* Table styles */
 .class-table {

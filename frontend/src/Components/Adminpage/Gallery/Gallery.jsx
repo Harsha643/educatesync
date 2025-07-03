@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './Gallery.css'; // Import your CSS styles
+import './Gallery.css';
 
 const Gallery = () => {
-  const [image, setImage] = useState({
-    imageName: "",
-    image:null
-  });
+  const [image, setImage] = useState({ imageName: "", image: null });
   const [images, setImages] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
-const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const imagesPerPage = 6;
 
-  // Fetch all images on component mount
+  const baseUrl = "https://educatesync.onrender.com" || "http://localhost:4000";
+
   useEffect(() => {
     fetchImages();
   }, []);
@@ -41,7 +40,6 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     const formData = new FormData();
     formData.append('imageName', image.imageName);
     formData.append('image', image.image);
@@ -49,24 +47,19 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
     try {
       setLoading(true);
       let response;
-      
       if (editingId) {
-        // PUT request for update
         response = await fetch(`${baseUrl}/admin/gallery/${editingId}`, {
           method: 'PUT',
           body: formData
         });
       } else {
-        // POST request for create
         response = await fetch(`${baseUrl}/admin/gallery`, {
           method: 'POST',
           body: formData
         });
       }
 
-      if (!response.ok) throw new Error(editingId ? 'Failed to update image' : 'Failed to upload image');
-      
-      // Reset form and fetch updated images
+      if (!response.ok) throw new Error('Image upload/update failed');
       setImage({ imageName: "", image: null });
       setEditingId(null);
       await fetchImages();
@@ -78,10 +71,7 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
   };
 
   const handleEdit = (img) => {
-    setImage({
-      imageName: img.imageName,
-      image:null // Don't pre-fill the image file input
-    }); 
+    setImage({ imageName: img.imageName, image: null });
     setEditingId(img._id);
   };
 
@@ -100,10 +90,15 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
     }
   };
 
+  // Pagination Logic
+  const totalPages = Math.ceil(images.length / imagesPerPage);
+  const startIndex = (currentPage - 1) * imagesPerPage;
+  const currentImages = images.slice(startIndex, startIndex + imagesPerPage);
+
   return (
     <div className="gallery-container">
       <h1>Gallery</h1>
-      
+
       <form onSubmit={handleSubmit}>
         <input 
           type="text" 
@@ -118,7 +113,7 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
           name="image"
           accept="image/*"
           onChange={handleChange}
-          required={!editingId} // Only required when creating new
+          required={!editingId}
         />
         <button type="submit" disabled={loading}>
           {loading ? 'Processing...' : editingId ? 'Update Image' : 'Upload Image'}
@@ -140,18 +135,31 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
         ) : images.length === 0 ? (
           <p>No images found</p>
         ) : (
-          <ul>
-            {images.map((img) => (
-              <li key={img._id}>
-                <h3>{img.imageName}</h3>
-                <img src={img.image} alt={img.imageName} width="200" />
-                <div className="actions">
-                  <button onClick={() => handleEdit(img)}>Edit</button>
-                  <button onClick={() => handleDelete(img._id)}>Delete</button>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <>
+            <ul className="image-grid">
+              {currentImages.map((img) => (
+                <li key={img._id} className="gallery-item">
+                  <h3>{img.imageName}</h3>
+                  <img src={img.image} alt={img.imageName} width="200" />
+                  <div className="actions">
+                    <button onClick={() => handleEdit(img)}>Edit</button>
+                    <button onClick={() => handleDelete(img._id)}>Delete</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            {/* Pagination Controls */}
+            <div className="pagination-controls">
+              <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
+                ⬅ Prev
+              </button>
+              <span>Page {currentPage} of {totalPages}</span>
+              <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
+                Next ➡
+              </button>
+            </div>
+          </>
         )}
       </div>
     </div>

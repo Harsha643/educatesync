@@ -16,6 +16,53 @@
   color: #333;
 }
 
+.images-list ul.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pagination-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+}
+
+.pagination-controls button {
+  padding: 8px 14px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
 form {
   display: flex;
   flex-direction: column;

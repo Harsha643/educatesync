@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './AdminLogin.css'; // Make sure to style as 
+import './AdminLogin.css';
 
-const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+const baseUrl = "https://educatesync.onrender.com";
 
 const RoleBasedLogin = () => {
   const [role, setRole] = useState('admin');
@@ -16,6 +16,7 @@ const RoleBasedLogin = () => {
     rollnumber: '',
     StudentPassword: ''
   });
+
   const [staffList, setStaffList] = useState([]);
   const [studentList, setStudentList] = useState([]);
   const navigate = useNavigate();
@@ -36,33 +37,66 @@ const RoleBasedLogin = () => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e, isGuest = false) => {
     e.preventDefault();
 
-    // Handle Guest Admin Login
-    if (role === 'admin') {
-      toast.success('Guest Admin Login Successful');
-      setTimeout(() => navigate('/admin'), 2000);
-      return;
+    // ==============================
+    // 🚀 Guest Login Handling
+    // ==============================
+    if (isGuest) {
+      if (role === 'admin') {
+        try {
+          const res = await fetch(`${baseUrl}/admin/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: "guest@school.com", password: "guest@123" }),
+          });
+          const data = await res.json();
+
+          if (res.ok) {
+            localStorage.setItem('token', data.token);
+            toast.success('Guest Admin Login successful!');
+            setTimeout(() => navigate('/admin'), 2000);
+          } else {
+            toast.error(data.msg || 'Guest Admin Login failed');
+          }
+        } catch (error) {
+          toast.error('Server error during guest admin login');
+        }
+
+      } else if (role === 'staff') {
+        const staff = staffList.find(
+          (s) =>
+            s.teacherName === "guest Teacher" &&
+            s.password === "guest@9306"
+        );
+        if (staff) {
+          toast.success('Guest Staff Login successful!');
+          setTimeout(() => navigate('/Staff-Dashboard', { state: { staffdata: staff } }), 2000);
+        } else {
+          toast.error('Invalid guest staff credentials');
+        }
+
+      } else if (role === 'student') {
+        const student = studentList.find(
+          (s) =>
+            s.rollNumber === "GUEST001" &&
+            s.Studentpassword === "guest@2025" // ✅ exact field name
+        );
+        if (student) {
+          toast.success('Guest Student Login successful!');
+          setTimeout(() => navigate('/Student-Dashboard', { state: { studentdata: student } }), 2000);
+        } else {
+          toast.error('Invalid guest student credentials');
+        }
+      }
+
+      return; // ⛔ Prevent normal login from running
     }
 
-    // Handle Guest Staff Login
-    if (role === 'staff') {
-      const guestStaff = { teacherName: 'Guest Staff', subject: 'N/A' };
-      toast.success('Guest Staff Login Successful');
-      setTimeout(() => navigate('/Staff-Dashboard', { state: { staffdata: guestStaff } }), 2000);
-      return;
-    }
-
-    // Handle Guest Student Login
-    if (role === 'student') {
-      const guestStudent = { name: 'Guest Student', rollNumber: 'GUEST001' };
-      toast.success('Guest Student Login Successful');
-      setTimeout(() => navigate('/Student-Dashboard', { state: { studentdata: guestStudent } }), 2000);
-      return;
-    }
-
-    // Admin Login
+    // ==============================
+    // 🔐 Normal Login Handling
+    // ==============================
     if (role === 'admin') {
       try {
         const res = await fetch(`${baseUrl}/admin/auth/login`, {
@@ -77,7 +111,7 @@ const RoleBasedLogin = () => {
           toast.success('Admin Login successful!');
           setTimeout(() => navigate('/admin'), 2000);
         } else {
-          toast.error(data.msg || 'Login failed');
+          toast.error(data.msg || 'Admin Login failed');
         }
       } catch (error) {
         toast.error('Server error during admin login');
@@ -85,10 +119,12 @@ const RoleBasedLogin = () => {
 
     } else if (role === 'staff') {
       const staff = staffList.find(
-        (s) => s.teacherName === formData.teacherName && s.password === formData.StaffPassword
+        (s) =>
+          s.teacherName === formData.teacherName &&
+          s.password === formData.StaffPassword
       );
       if (staff) {
-        toast.success('Staff login successful');
+        toast.success('Staff Login successful!');
         setTimeout(() => navigate('/Staff-Dashboard', { state: { staffdata: staff } }), 2000);
       } else {
         toast.error('Invalid staff credentials');
@@ -96,10 +132,12 @@ const RoleBasedLogin = () => {
 
     } else if (role === 'student') {
       const student = studentList.find(
-        (s) => s.rollNumber === formData.rollnumber && s.Studentpassword === formData.StudentPassword
+        (s) =>
+          s.rollNumber === formData.rollnumber &&
+          s.Studentpassword === formData.StudentPassword // ✅ match field name
       );
       if (student) {
-        toast.success('Student login successful');
+        toast.success('Student Login successful!');
         setTimeout(() => navigate('/Student-Dashboard', { state: { studentdata: student } }), 2000);
       } else {
         toast.error('Invalid student credentials');
@@ -110,20 +148,13 @@ const RoleBasedLogin = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={(e) => handleLogin(e)}>
         <select name="role" value={role} onChange={(e) => setRole(e.target.value)} required>
           <option value="admin">Admin</option>
           <option value="staff">Staff</option>
           <option value="student">Student</option>
-         
         </select>
 
-        {/* Optional Guest Info Text
-        {role.startsWith('guest') && (
-          <p className="guest-warning">You are logging in as a guest. Limited access granted.</p>
-        )} */}
-
-        {/* Admin login fields */}
         {role === 'admin' && (
           <>
             <input
@@ -145,7 +176,6 @@ const RoleBasedLogin = () => {
           </>
         )}
 
-        {/* Staff login fields */}
         {role === 'staff' && (
           <>
             <input
@@ -167,7 +197,6 @@ const RoleBasedLogin = () => {
           </>
         )}
 
-        {/* Student login fields */}
         {role === 'student' && (
           <>
             <input
@@ -190,7 +219,7 @@ const RoleBasedLogin = () => {
         )}
 
         <button type="submit">Login</button>
-        <button type='submit'>Guest Login</button>
+        <button type="button" onClick={(e) => handleLogin(e, true)}>Guest Login</button>
       </form>
 
       <ToastContainer position="top-right" autoClose={2000} />

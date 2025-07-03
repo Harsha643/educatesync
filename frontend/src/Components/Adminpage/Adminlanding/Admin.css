@@ -4,6 +4,36 @@
     gap: 20px;
     padding: 20px;
   }
+
+  .admin-skeleton-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 30px;
+}
+
+.admin-skeleton-box {
+  height: 45px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #f0f4f8 25%,
+    #d9e2ec 50%,
+    #f0f4f8 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
   
   .container-Admin h1 {
     background-color: #eaf3fe; /* Light background from logo */

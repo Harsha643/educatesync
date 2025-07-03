@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import "./Newstudent.css"
+import "./Newstudent.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Newstudent = ({ existingStudent, onClose, refreshData }) => {
-const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+  const baseUrl = "https://educatesync.onrender.com" || "http://localhost:4000";
 
   const [student, setStudent] = useState({
     studentName: '',
@@ -24,6 +24,8 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
     MotherTongue: ''
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (existingStudent) {
       const formattedDate = existingStudent.dateOfBirth?.split('T')[0] || '';
@@ -32,25 +34,8 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
         ...existingStudent,
         dateOfBirth: formattedDate
       }));
-    } else {
-      setStudent({
-        studentName: '',
-        fatherName: '',
-        previousClass: '',
-        presentClass: '',
-        age: '',
-        address: '',
-        parentEmailAddress: '',
-        parentPhoneNumber: '',
-        dateOfBirth: '',
-        image: null,
-        aadharCardNumber: '',
-        nationality: '',
-        religion: '',
-        gender: '',
-        MotherTongue: ''
-      });
     }
+    setLoading(false);
   }, [existingStudent]);
 
   const handleChange = (e) => {
@@ -63,6 +48,7 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const allStudentsRes = await fetch(`${baseUrl}/admin/students`);
@@ -76,6 +62,7 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
       if (isDuplicate) {
         toast.error("This Aadhar card number is already registered.");
+        setLoading(false);
         return;
       }
 
@@ -88,7 +75,7 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
       });
 
       const url = existingStudent
-        ? `${baseurl}/admin/students/${student._id}`
+        ? `${baseUrl}/admin/students/${existingStudent._id}`
         : `${baseUrl}/admin/students`;
 
       const method = existingStudent ? 'PUT' : 'POST';
@@ -109,28 +96,46 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
     } catch (error) {
       console.error('Submission error:', error);
       toast.error('Submission failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return <div className="skeleton-loader">Loading...</div>;
+  }
 
   return (
     <div className="form-container">
       <h2 className="form-title">{existingStudent ? 'Update' : 'Add'} Student Details</h2>
       <form onSubmit={handleSubmit}>
-        {[
-          { name: "studentName", label: "Student Name", type: "text" },
-          { name: "fatherName", label: "Father's Name", type: "text" },
-          { name: "previousClass", label: "Previous Class", type: "text" },
-          { name: "presentClass", label: "Present Class", type: "text" },
-          { name: "age", label: "Age", type: "number" },
-          { name: "aadharCardNumber", label: "Aadhar Card Number", type: "text" },
-          { name: "address", label: "Address", type: "textarea" },
-          { name: "parentEmailAddress", label: "Parent Email", type: "email" },
-          { name: "parentPhoneNumber", label: "Parent Phone", type: "tel" },
-          { name: "dateOfBirth", label: "Date of Birth", type: "date" },
-          { name: "nationality", label: "Nationality", type: "text" },
-          { name: "religion", label: "Religion", type: "text" },
-          { name: "MotherTongue", label: "Mother Tongue", type: "text" },
-        ].map(({ name, label, type }) => (
+        {[{
+          name: "studentName", label: "Student Name", type: "text"
+        }, {
+          name: "fatherName", label: "Father's Name", type: "text"
+        }, {
+          name: "previousClass", label: "Previous Class", type: "text"
+        }, {
+          name: "presentClass", label: "Present Class", type: "text"
+        }, {
+          name: "age", label: "Age", type: "number"
+        }, {
+          name: "aadharCardNumber", label: "Aadhar Card Number", type: "text"
+        }, {
+          name: "address", label: "Address", type: "textarea"
+        }, {
+          name: "parentEmailAddress", label: "Parent Email", type: "email"
+        }, {
+          name: "parentPhoneNumber", label: "Parent Phone", type: "tel"
+        }, {
+          name: "dateOfBirth", label: "Date of Birth", type: "date"
+        }, {
+          name: "nationality", label: "Nationality", type: "text"
+        }, {
+          name: "religion", label: "Religion", type: "text"
+        }, {
+          name: "MotherTongue", label: "Mother Tongue", type: "text"
+        }].map(({ name, label, type }) => (
           <div className="input-group" key={name}>
             {type === 'textarea' ? (
               <textarea

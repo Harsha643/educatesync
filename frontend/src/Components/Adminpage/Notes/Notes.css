@@ -79,6 +79,39 @@
   color: white;
 }
 
+.notes-loader {
+  padding: 20px;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f4f4f4 50%, #e0e0e0 75%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.skeleton-input {
+  height: 40px;
+  width: 200px;
+}
+
+.skeleton-table {
+  height: 300px;
+  width: 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+
+
 .edit-button {
   background-color: #ff9800;
   color: white;

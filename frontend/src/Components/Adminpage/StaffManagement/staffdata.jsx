@@ -5,21 +5,24 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const StaffDataFetching = () => {
-const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+  const baseUrl = "https://educatesync.onrender.com";
 
-  
   const [staffData, setStaffData] = useState([]);
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false); // 🔄 loading state
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const response = await fetch(`${baseUrl}/admin/staff`);
       const data = await response.json();
       setStaffData(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       toast.error("Failed to fetch staff data");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -29,11 +32,11 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`${baseUrl}/admin/staff/${id._id}`, { method: 'DELETE' });
+      await fetch(`${baseUrl}/admin/staff/${id._id}`, { method: "DELETE" });
       toast.success("Staff deleted successfully");
       fetchData();
     } catch (error) {
-      console.error('Delete error:', error);
+      console.error("Delete error:", error);
       toast.error("Failed to delete staff");
     }
   };
@@ -58,59 +61,65 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
     <div className="staffdata">
       <ToastContainer position="top-center" autoClose={3000} />
       <h1>Staff Data</h1>
-      <button className="add-btn" onClick={handleAddNewStaff}>Add New Staff</button>
+      <button className="add-btn" onClick={handleAddNewStaff}>
+        Add New Staff
+      </button>
 
       {showModal && (
-        <Newstaff 
-          existingStaff={selectedStaff} 
-          onClose={closeModal} 
-          refreshData={fetchData} 
+        <Newstaff
+          existingStaff={selectedStaff}
+          onClose={closeModal}
+          refreshData={fetchData}
         />
       )}
 
-      <div className="table-scroll-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Staff ID</th>
-              <th>Teacher Name</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Image</th>
-              <th>Gender</th>
-              <th>Aadhar Number</th>
-              <th>Phone Number</th>
-              <th>Designation</th>
-              <th>Experience</th>
-              <th>Date of Joining</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {staffData.map((staff) => (
-              <tr key={staff.staffId}>
-                <td>{staff.staffId}</td>
-                <td>{staff.teacherName}</td>
-                <td>{staff.email}</td>
-                <td>{staff.address}</td>
-                <td>
-                  <img src={staff.image} alt="Staff" width="100px" />
-                </td>
-                <td>{staff.gender}</td>
-                <td>{staff.aadharNumber}</td>
-                <td>{staff.phoneNumber}</td>
-                <td>{staff.designation}</td>
-                <td>{staff.exprerence}</td>
-                <td>{staff.dateOfJoining}</td>
-                <td>
-                  <button className="update-btn" onClick={() => handleUpdate(staff)}>Update</button>
-                  <button className="delete-btn" onClick={() => handleDelete(staff)}>Delete</button>
-                </td>
+      {loading ? (
+        <div className="loading-spinner">Loading staff data...</div>
+      ) : (
+        <div className="table-scroll-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Staff ID</th>
+                <th>Teacher Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Image</th>
+                <th>Gender</th>
+                <th>Aadhar Number</th>
+                <th>Phone Number</th>
+                <th>Designation</th>
+                <th>Experience</th>
+                <th>Date of Joining</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {staffData.map((staff) => (
+                <tr key={staff.staffId}>
+                  <td>{staff.staffId}</td>
+                  <td>{staff.teacherName}</td>
+                  <td>{staff.email}</td>
+                  <td>{staff.address}</td>
+                  <td>
+                    <img src={staff.image} alt="Staff" width="100px" />
+                  </td>
+                  <td>{staff.gender}</td>
+                  <td>{staff.aadharNumber}</td>
+                  <td>{staff.phoneNumber}</td>
+                  <td>{staff.designation}</td>
+                  <td>{staff.exprerence}</td>
+                  <td>{staff.dateOfJoining}</td>
+                  <td>
+                    <button className="update-btn" onClick={() => handleUpdate(staff)}>Update</button>
+                    <button className="delete-btn" onClick={() => handleDelete(staff)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./FeeManagement.css"; 
+
 const FeeManagement = () => {
     const [students, setStudents] = useState([]);
     const [editingId, setEditingId] = useState(null);
     const [editedFees, setEditedFees] = useState({});
-const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
 
+    const baseUrl = "https://educatesync.onrender.com" || "http://localhost:4000";
 
     useEffect(() => {
         fetchStudents();
@@ -18,18 +21,15 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
             .catch((err) => console.error("Error fetching students:", err));
     };
 
- 
     const handleEditClick = (id, fees) => {
         setEditingId(id);
         setEditedFees({ ...fees });
     };
 
- 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEditedFees((prev) => ({ ...prev, [name]: Number(value) }));
     };
-
 
     const handleSave = (id) => {
         const total =
@@ -50,7 +50,10 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
             .catch((err) => console.error("Error updating fees:", err));
     };
 
- 
+    // Pagination logic
+    const totalPages = Math.ceil(students.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentStudents = students.slice(startIndex, startIndex + itemsPerPage);
 
     return (
         <div>
@@ -71,7 +74,7 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
                     </tr>
                 </thead>
                 <tbody>
-                    {students.map((student) => {
+                    {currentStudents.map((student) => {
                         const {
                             _id,
                             admissionNumber,
@@ -134,21 +137,12 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
                                 <td>
                                     {isEditing ? (
                                         <>
-                                            <button onClick={() => handleSave(_id)}>
-                                                Save
-                                            </button>
-                                            <button onClick={() => setEditingId(null)}>
-                                                Cancel
-                                            </button>
+                                            <button onClick={() => handleSave(_id)}>Save</button>
+                                            <button onClick={() => setEditingId(null)}>Cancel</button>
                                         </>
                                     ) : (
                                         <>
-                                            <button
-                                                onClick={() => handleEditClick(_id, fees)}
-                                            >
-                                                Edit
-                                            </button>
-                                         
+                                            <button onClick={() => handleEditClick(_id, fees)}>Edit</button>
                                         </>
                                     )}
                                 </td>
@@ -157,6 +151,27 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
                     })}
                 </tbody>
             </table>
+
+            {/* Pagination Controls */}
+            <div className="pagination-controls">
+                <button
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                >
+                    ⬅ Prev
+                </button>
+                <span>
+                    Page {currentPage} of {totalPages}
+                </span>
+                <button
+                    onClick={() =>
+                        setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                    }
+                    disabled={currentPage === totalPages}
+                >
+                    Next ➡
+                </button>
+            </div>
         </div>
     );
 };
