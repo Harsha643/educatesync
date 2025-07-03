@@ -6,7 +6,7 @@ const Header = ({ studentdata }) => {
         <div className='header-container'>
             <img 
                 src={studentdata?.image}
-                alt={`${studentdata?.studentName || 'Student'} profile`}
+                alt={`/profile.png`}
                 width="50px"
                 style={{ 
                     borderRadius: "50%",
@@ -14,7 +14,7 @@ const Header = ({ studentdata }) => {
                     boxSizing: "border-box"
                 }}
                 onError={(e) => {
-                    e.target.src = '/default-profile.png';
+                    e.target.src = '/profile.png';
                     e.target.alt = 'Default profile';
                 }}
             />

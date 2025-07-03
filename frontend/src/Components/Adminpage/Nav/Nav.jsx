@@ -45,8 +45,8 @@ const baseUrl="https://educatesync.onrender.com" || "http://localhost:4000"
    <img src="/logo.png" alt="logo" width={"100px"} />
     {admin ? (
       <div className='insidediv'>
-        <nav className='loginbtn'>Welcome, {admin.name}</nav>
-      <nav className='logoutbtn' onClick={() =>handleLogout() }>Logout</nav>
+        
+      <nav className='logoutbtn' onClick={() =>handleLogout() }><img src="/logout.png" width={"70px"}/></nav>
         <img src={admin.image || "/profile.png"} alt="" width={"70px"} style={{borderRadius:"50%", height:"70px"}} />
         
       
