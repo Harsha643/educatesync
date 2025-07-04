@@ -10,7 +10,8 @@ const StaffDataFetching = () => {
   const [staffData, setStaffData] = useState([]);
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(false); // 🔄 loading state
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchData = async () => {
     setLoading(true);
@@ -57,13 +58,33 @@ const StaffDataFetching = () => {
     fetchData();
   };
 
+  // Filter staff by search term
+  const filteredStaff = staffData.filter((staff) => {
+    const lowerSearch = searchTerm.toLowerCase();
+    return (
+      (staff.teacherName && staff.teacherName.toLowerCase().includes(lowerSearch)) ||
+      (staff.email && staff.email.toLowerCase().includes(lowerSearch)) ||
+      (staff.staffId && staff.staffId.toLowerCase().includes(lowerSearch))
+    );
+  });
+
   return (
     <div className="staffdata">
       <ToastContainer position="top-center" autoClose={3000} />
       <h1>Staff Data</h1>
-      <button className="add-btn" onClick={handleAddNewStaff}>
-        Add New Staff
-      </button>
+
+      <div className="header-actions">
+        <input
+          type="text"
+          placeholder="Search by Name, Email or ID"
+          className="search-input"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button className="add-btn" onClick={handleAddNewStaff}>
+          Add New Staff
+        </button>
+      </div>
 
       {showModal && (
         <Newstaff
@@ -95,27 +116,35 @@ const StaffDataFetching = () => {
               </tr>
             </thead>
             <tbody>
-              {staffData.map((staff) => (
-                <tr key={staff.staffId}>
-                  <td>{staff.staffId}</td>
-                  <td>{staff.teacherName}</td>
-                  <td>{staff.email}</td>
-                  <td>{staff.address}</td>
-                  <td>
-                    <img src={staff.image} alt="Staff" width="100px" />
-                  </td>
-                  <td>{staff.gender}</td>
-                  <td>{staff.aadharNumber}</td>
-                  <td>{staff.phoneNumber}</td>
-                  <td>{staff.designation}</td>
-                  <td>{staff.exprerence}</td>
-                  <td>{staff.dateOfJoining}</td>
-                  <td>
-                    <button className="update-btn" onClick={() => handleUpdate(staff)}>Update</button>
-                    <button className="delete-btn" onClick={() => handleDelete(staff)}>Delete</button>
+              {filteredStaff.length > 0 ? (
+                filteredStaff.map((staff) => (
+                  <tr key={staff.staffId}>
+                    <td>{staff.staffId}</td>
+                    <td>{staff.teacherName}</td>
+                    <td>{staff.email}</td>
+                    <td>{staff.address}</td>
+                    <td>
+                      <img src={staff.image} alt="Staff" width="100px" />
+                    </td>
+                    <td>{staff.gender}</td>
+                    <td>{staff.aadharNumber}</td>
+                    <td>{staff.phoneNumber}</td>
+                    <td>{staff.designation}</td>
+                    <td>{staff.exprerence}</td>
+                    <td>{staff.dateOfJoining}</td>
+                    <td>
+                      <button className="update-btn" onClick={() => handleUpdate(staff)}>Update</button>
+                      <button className="delete-btn" onClick={() => handleDelete(staff)}>Delete</button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="12" style={{ textAlign: "center", padding: "20px" }}>
+                    No staff found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

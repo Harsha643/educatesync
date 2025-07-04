@@ -9,6 +9,20 @@
   color: #007bff;
   margin-bottom: 1rem;
 }
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.search-input {
+  padding: 8px;
+  width: 100px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
 
 .loading-spinner {
   text-align: center;

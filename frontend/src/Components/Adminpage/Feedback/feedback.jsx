@@ -24,6 +24,8 @@ const Feedback = () => {
     feedback: ''
   });
 
+  const [searchTerm, setSearchTerm] = useState(""); // 🔍 New search state
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -93,10 +95,18 @@ const Feedback = () => {
     }
   };
 
+  // 🔍 Filter based on search
+  const filteredFeedback = feedback.filter((item) =>
+    item.studentName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.rollNumber?.toString().includes(searchTerm) ||
+    item.class?.toString().includes(searchTerm) ||
+    item.feedback?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   // Pagination logic
-  const totalPages = Math.ceil(feedback.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredFeedback.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedFeedback = feedback.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedFeedback = filteredFeedback.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div className="feedback-container">
@@ -120,6 +130,20 @@ const Feedback = () => {
         </select>
 
         <button onClick={() => openFeedbackModal(null)}>Add Feedback</button>
+      </div>
+
+      {/* 🔍 Search input */}
+      <div className="search-bar" style={{ margin: "10px 0" }}>
+        <input
+          type="text"
+          placeholder="Search by name, roll number, class or feedback..."
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1); // Reset page on search
+          }}
+          style={{ width: "300px", padding: "6px", borderRadius: "4px", border: "1px solid #ccc" }}
+        />
       </div>
 
       <table className="assignment-table" cellSpacing="0" cellPadding="5" border="1">

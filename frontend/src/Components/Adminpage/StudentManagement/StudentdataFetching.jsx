@@ -10,7 +10,9 @@ const StudentDataFetching = () => {
   const [loading, setLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const studentsPerPage = 5;
+  const studentsPerPage = 8;
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchData = async () => {
     setLoading(true);
@@ -54,10 +56,23 @@ const StudentDataFetching = () => {
     fetchData();
   };
 
+  // Filter logic
+  const filteredStudents = studentData.filter((student) => {
+    const nameMatch = (student.studentName || "")
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const rollMatch =
+      student.rollNumber !== undefined &&
+      student.rollNumber.toString().includes(searchTerm);
+
+    return nameMatch || rollMatch;
+  });
+
+  // Pagination logic
   const indexOfLastStudent = currentPage * studentsPerPage;
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
-  const currentStudents = studentData.slice(indexOfFirstStudent, indexOfLastStudent);
-  const totalPages = Math.ceil(studentData.length / studentsPerPage);
+  const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
+  const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(prev => prev + 1);
@@ -78,6 +93,18 @@ const StudentDataFetching = () => {
         <button className="add-btn" onClick={handleAddNewStudent}>
           + Add New Student
         </button>
+      </div>
+
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search by Name or Roll No"
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1); // Reset page on search
+          }}
+        />
       </div>
 
       {loading ? (
@@ -103,26 +130,34 @@ const StudentDataFetching = () => {
               </tr>
             </thead>
             <tbody>
-              {currentStudents.map((student, index) => (
-                <tr key={index}>
-                  <td>{student.admissionNumber}</td>
-                  <td>{student.rollNumber}</td>
-                  <td>{student.studentName}</td>
-                  <td>{student.age}</td>
-                  <td>{student.presentClass}</td>
-                  <td>{student.fatherName}</td>
-                  <td>{student.dateOfBirth}</td>
-                  <td>{student.aadharCardNumber}</td>
-                  <td>{student.nationality}</td>
-                  <td>{student.religion}</td>
-                  <td>{student.gender}</td>
-                  <td>{student.address}</td>
-                  <td className="action-buttons">
-                    <button className="update-btn" onClick={() => handleUpdate(student)}>Update</button>
-                    <button className="delete-btn" onClick={() => handleDelete(student._id)}>Delete</button>
+              {currentStudents.length > 0 ? (
+                currentStudents.map((student, index) => (
+                  <tr key={index}>
+                    <td>{student.admissionNumber}</td>
+                    <td>{student.rollNumber}</td>
+                    <td>{student.studentName}</td>
+                    <td>{student.age}</td>
+                    <td>{student.presentClass}</td>
+                    <td>{student.fatherName}</td>
+                    <td>{student.dateOfBirth}</td>
+                    <td>{student.aadharCardNumber}</td>
+                    <td>{student.nationality}</td>
+                    <td>{student.religion}</td>
+                    <td>{student.gender}</td>
+                    <td>{student.address}</td>
+                    <td className="action-buttons">
+                      <button className="update-btn" onClick={() => handleUpdate(student)}>Update</button>
+                      <button className="delete-btn" onClick={() => handleDelete(student._id)}>Delete</button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="13" style={{ textAlign: "center", padding: "20px" }}>
+                    No students found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
 

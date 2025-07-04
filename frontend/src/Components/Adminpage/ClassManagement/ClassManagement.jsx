@@ -6,6 +6,7 @@ const ClassManagement = () => {
   const [selectedClass, setSelectedClass] = useState(9);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const studentsPerPage = 10;
 
@@ -33,11 +34,8 @@ const ClassManagement = () => {
 
   const handleClassChange = (e) => {
     setSelectedClass(Number(e.target.value));
+    setSearchTerm(""); // Clear search when class changes
   };
-
-  const totalPages = Math.ceil(classes.length / studentsPerPage);
-  const startIndex = (currentPage - 1) * studentsPerPage;
-  const currentStudents = classes.slice(startIndex, startIndex + studentsPerPage);
 
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage((prev) => prev - 1);
@@ -47,18 +45,46 @@ const ClassManagement = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
   };
 
+  // 🔍 Search filter
+  const filteredStudents = classes.filter((student) => {
+    const search = searchTerm.toLowerCase();
+    return (
+      student.studentName?.toLowerCase().includes(search) ||
+      student.fatherName?.toLowerCase().includes(search) ||
+      student.rollNumber?.toString().includes(search) ||
+      student.admissionNumber?.toString().includes(search)
+    );
+  });
+
+  const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
+  const startIndex = (currentPage - 1) * studentsPerPage;
+  const currentStudents = filteredStudents.slice(startIndex, startIndex + studentsPerPage);
+
   return (
     <div>
       <h1>Class Management</h1>
 
-      <select value={selectedClass} onChange={handleClassChange}>
-        <option value="">Select Class</option>
-        {[...Array(10)].map((_, i) => (
-          <option key={i + 1} value={i + 1}>
-            Class {i + 1}
-          </option>
-        ))}
-      </select>
+      <div className="top-bar">
+        <select value={selectedClass} onChange={handleClassChange}>
+          <option value="">Select Class</option>
+          {[...Array(10)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>
+              Class {i + 1}
+            </option>
+          ))}
+        </select>
+
+        <input
+          type="text"
+          placeholder="Search by Name, Roll No, or Father's Name"
+          className="search-input"
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1); // Reset to page 1 on new search
+          }}
+        />
+      </div>
 
       {loading ? (
         <div className="loader-container">
@@ -119,7 +145,7 @@ const ClassManagement = () => {
           </div>
         </>
       ) : (
-        <p className="no-students">No students are present in this class.</p>
+        <p className="no-students">No students found for this class.</p>
       )}
     </div>
   );

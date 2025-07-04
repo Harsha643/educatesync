@@ -7,6 +7,18 @@
   padding: 20px;
 }
 
+.search-bar {
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.search-bar input {
+  padding: 8px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .fee-management h1 {
   text-align: center;
   color: #2c3e50;
